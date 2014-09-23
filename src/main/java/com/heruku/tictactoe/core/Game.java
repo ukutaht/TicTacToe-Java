@@ -2,7 +2,7 @@ package com.heruku.tictactoe.core;
 
 public class Game {
     private final Board board;
-    private final Player currentPlayer;
+    final Player currentPlayer;
 
     public Game(Player currentPlayer){
         board = new Board("         ");

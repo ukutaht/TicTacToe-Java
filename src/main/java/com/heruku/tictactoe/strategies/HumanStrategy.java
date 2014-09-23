@@ -1,7 +1,8 @@
 package com.heruku.tictactoe.strategies;
 
-import com.heruku.tictactoe.UI;
+import com.heruku.tictactoe.core.UI;
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Player;
 import com.heruku.tictactoe.core.Strategy;
 
 public class HumanStrategy implements Strategy {
@@ -11,7 +12,7 @@ public class HumanStrategy implements Strategy {
         this.ui = ui;
     }
 
-    public int getMove(Board board){
+    public int getMove(Board board, Player player){
         int move = ui.getMove();;
         while(!board.isValidMove(move)){
             ui.notifyOfInvalidMove();

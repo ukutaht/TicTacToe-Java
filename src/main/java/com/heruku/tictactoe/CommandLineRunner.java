@@ -1,9 +1,11 @@
 package com.heruku.tictactoe;
 
 import com.heruku.tictactoe.core.Game;
+import com.heruku.tictactoe.core.GameBuilder;
+import com.heruku.tictactoe.core.UI;
 import com.heruku.tictactoe.strategies.HumanStrategy;
 import com.heruku.tictactoe.core.Player;
-import com.heruku.tictactoe.strategies.RandomStrategy;
+import com.heruku.tictactoe.strategies.UnbeatableAIStrategy;
 
 import java.io.*;
 
@@ -16,12 +18,31 @@ public class CommandLineRunner {
         this.ui = ui;
     }
 
+    public CommandLineRunner(UI ui){
+        this.ui = ui;
+    }
+
     public void play(){
        boolean playAgain = true;
        while(playAgain){
+           configureGame();
            playGame();
            playAgain = ui.shouldPlayAgain();
        }
+    }
+
+    private void configureGame() {
+        GameBuilder gameBuilder = new GameBuilder(ui);
+        game = gameBuilder.withPlayerX(getPlayerType("X"))
+                          .withPlayerO(getPlayerType("O"))
+                          .build();
+    }
+
+    private String getPlayerType(String mark) {
+        String type = "";
+        while (!type.equals("computer") && !type.equals("human"))
+            type = ui.getPlayerTypeFor(mark);
+        return type;
     }
 
     public void playGame(){
@@ -49,8 +70,6 @@ public class CommandLineRunner {
         Reader in  = new InputStreamReader(System.in);
         Writer out = new BufferedWriter(new OutputStreamWriter(System.out));
         CommandLineUI ui = new CommandLineUI(in, out);
-        Player.O(new RandomStrategy());
-        Game game = new Game(Player.X(new HumanStrategy(ui)));
-        new CommandLineRunner(game, ui).play();
+        new CommandLineRunner(ui).play();
     }
 }

@@ -101,4 +101,16 @@ public class CommandLineUITest {
         setup("");
         assertFalse(ui.shouldPlayAgain());
     }
+
+    @Test
+    public void testGetsHumanType(){
+        setup("human\n");
+        assertEquals("human", ui.getPlayerTypeFor("X"));
+    }
+
+    @Test
+    public void testGetsComputerType(){
+        setup("computer\n");
+        assertEquals("computer", ui.getPlayerTypeFor("X"));
+    }
 }

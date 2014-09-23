@@ -2,6 +2,7 @@ package com.heruku.tictactoe.strategies;
 
 import com.heruku.tictactoe.CommandLineUI;
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Player;
 import com.heruku.tictactoe.core.Strategy;
 import org.junit.*;
 import java.io.*;
@@ -25,6 +26,6 @@ public class HumanStrategyTest {
     @Test
     public void testGetsInputFromUI(){
         setup("3\n");
-        assertEquals(2, strategy.getMove(new Board("         ")));
+        assertEquals(2, strategy.getMove(new Board("         "), Player.X()));
     }
 }

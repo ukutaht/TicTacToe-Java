@@ -2,7 +2,7 @@ package com.heruku.tictactoe.core;
 
 public class Player {
     private String mark;
-    private Strategy strategy;
+    Strategy strategy;
     private static Player playerX;
     private static Player playerO;
 
@@ -34,7 +34,7 @@ public class Player {
     }
 
     public int getMove(Board board){
-        return strategy.getMove(board);
+        return strategy.getMove(board, this);
     }
 
     public Player next(){

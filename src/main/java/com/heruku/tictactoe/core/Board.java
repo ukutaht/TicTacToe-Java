@@ -1,5 +1,7 @@
 package com.heruku.tictactoe.core;
 
+import java.util.Iterator;
+
 public class Board {
     private String squares;
     private static final int[][] WINNING_COMBINATIONS = {
@@ -77,5 +79,34 @@ public class Board {
 
     private boolean isEmpty(String square) {
         return square.equals(" ");
+    }
+
+    public Iterator<Integer> validMoves() {
+        return new Iterator<Integer>() {
+            int current = -1;
+
+            @Override
+            public boolean hasNext() {
+                for (int i = current + 1; i < squares.length(); i++) {
+                    if(isValidMove(i))
+                        return true;
+                }
+                return false;
+            }
+
+            @Override
+            public Integer next() {
+                current++;
+                while(!isValidMove(current) && current < squares.length()){
+                    current++;
+                }
+                return current;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("I'm a Teapot");
+            }
+        };
     }
 }

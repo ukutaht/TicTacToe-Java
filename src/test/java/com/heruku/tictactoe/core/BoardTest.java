@@ -1,5 +1,10 @@
 package com.heruku.tictactoe.core;
 import org.junit.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -34,6 +39,43 @@ public class BoardTest {
         setupBoard("         ");
         Board newBoard = board.markSquare(0, "X");
         assertFalse(newBoard.isValidMove(0));
+    }
+
+    @Test
+    public void testAllMovesValid(){
+        setupBoard("         ");
+        Iterator<Integer> validMoves = board.validMoves();
+        assertEquals(new Integer(0), validMoves.next());
+        assertEquals(new Integer(1), validMoves.next());
+        assertEquals(new Integer(2), validMoves.next());
+        assertEquals(new Integer(3), validMoves.next());
+        assertEquals(new Integer(4), validMoves.next());
+        assertEquals(new Integer(5), validMoves.next());
+        assertEquals(new Integer(6), validMoves.next());
+        assertEquals(new Integer(7), validMoves.next());
+        assertEquals(new Integer(8), validMoves.next());
+        assertFalse(validMoves.hasNext());
+    }
+
+    @Test
+    public void testSomeMovesValid(){
+        setupBoard("X O      ");
+        Iterator<Integer> validMoves = board.validMoves();
+        assertEquals(new Integer(1), validMoves.next());
+        assertEquals(new Integer(3), validMoves.next());
+        assertEquals(new Integer(4), validMoves.next());
+        assertEquals(new Integer(5), validMoves.next());
+        assertEquals(new Integer(6), validMoves.next());
+        assertEquals(new Integer(7), validMoves.next());
+        assertEquals(new Integer(8), validMoves.next());
+        assertFalse(validMoves.hasNext());
+    }
+
+    @Test
+    public void testNoMovesValid(){
+        setupBoard("XXOXOOXXO");
+        Iterator<Integer> validMoves = board.validMoves();
+        assertFalse(validMoves.hasNext());
     }
 
     @Test

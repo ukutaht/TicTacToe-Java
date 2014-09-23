@@ -1,4 +1,4 @@
-package com.heruku.tictactoe;
+package com.heruku.tictactoe.core;
 
 public interface UI {
     void printBoard(String boardString);
@@ -12,4 +12,6 @@ public interface UI {
     boolean shouldPlayAgain();
 
     void notifyDraw();
+
+    String getPlayerTypeFor(String mark);
 }

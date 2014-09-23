@@ -1,5 +1,7 @@
 package com.heruku.tictactoe;
 
+import com.heruku.tictactoe.core.UI;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -53,6 +55,18 @@ public class CommandLineUI implements UI {
         return answer.equals("y");
     }
 
+    @Override
+    public void notifyDraw() {
+        println("It's a draw!\n");
+    }
+
+    @Override
+    public String getPlayerTypeFor(String mark) {
+        println("Select player " + mark + " type(computer/human):");
+        return readln();
+    }
+
+
     private String buildBoardOutput(String boardString) {
         String boardOutput = BOARD_TEMPLATE;
         for (int i = 0; i < boardString.length(); i++) {
@@ -60,11 +74,6 @@ public class CommandLineUI implements UI {
                 boardOutput = boardOutput.replaceFirst(Integer.toString(i + 1), "" + boardString.charAt(i));
         }
         return boardOutput;
-    }
-
-    @Override
-    public void notifyDraw() {
-        println("It's a draw!\n");
     }
 
     private String readln(){

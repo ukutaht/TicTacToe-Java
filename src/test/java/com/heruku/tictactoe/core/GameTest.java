@@ -1,33 +1,54 @@
 package com.heruku.tictactoe.core;
 
-import com.heruku.tictactoe.strategies.MockStrategy;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.*;
 
 public class GameTest {
 
     Game game;
-    Player player;
 
     @Before
-    public void setupGame(){
-        player = Player.X(new MockStrategy());
-        this.game = new Game(player);
+    public void setupEmptyGame(){
+        List<Player> players = new ArrayList<Player>();
+        players.add(new FakePlayer());
+        this.game = new Game(new FakeUI(Arrays.asList(0)), players);
+    }
+
+    public void setupHumanGame(List<Integer> moves){
+        List<Player> players = new ArrayList<Player>();
+        UI ui = new FakeUI(moves);
+        players.add(new HumanPlayer("X", ui));
+        players.add(new HumanPlayer("O", ui));
+        this.game = new Game(ui, players);
     }
 
     @Test
-    public void testMove(){
-        Game newGame = game.playMove(0);
-        assertFalse(newGame.isValidMove(0));
+    public void testXWins() {
+        setupHumanGame(Arrays.asList(0, 8, 1, 7, 2));
+        game.play();
+        assertEquals("X", game.winner());
     }
 
-    @Test(expected=RuntimeException.class)
-    public void testThrowsWhenPlayingInvalidMove(){
-        game.playMove(0).playMove(0);
+    @Test
+    public void testOWins() {
+        setupHumanGame(Arrays.asList(0, 8, 1, 7, 3, 6));
+        game.play();
+        assertEquals("O", game.winner());
+    }
+
+    @Test
+    public void testDrawGame() {
+        setupHumanGame(Arrays.asList(0, 1, 2, 4, 3, 5, 7, 6, 8));
+        game.play();
+        assertTrue(game.hasDraw());
     }
 
     @Test
@@ -71,17 +92,17 @@ public class GameTest {
     }
 
     private void testIsNotOver(String boardString){
-        game = new Game(new Board(boardString), null);
+        game = new Game(null, new Board(boardString), null);
         assertFalse(game.isOver());
     }
 
     private void testIsOver(String boardString) {
-        game = new Game(new Board(boardString), null);
+        game = new Game(null, new Board(boardString), null);
         assertTrue(game.isOver());
     }
 
     private void testIsWinner(String boardString, String expectedWinner) {
-        game = new Game(new Board(boardString), null);
+        game = new Game(null, new Board(boardString), null);
         assertTrue(game.hasWinner());
         assertEquals(expectedWinner, game.winner());
     }

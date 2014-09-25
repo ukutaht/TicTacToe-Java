@@ -1,5 +1,6 @@
-package com.heruku.tictactoe;
+package com.heruku.tictactoe.commandline;
 
+import com.heruku.tictactoe.core.Constants;
 import com.heruku.tictactoe.core.UI;
 
 import java.io.BufferedReader;
@@ -50,7 +51,7 @@ public class CommandLineUI implements UI {
 
     @Override
     public boolean shouldPlayAgain(){
-        println("Play again?(y/n)");
+        println("Enter 'y' to play again");
         String answer = readln();
         return answer.equals("y");
     }
@@ -62,10 +63,9 @@ public class CommandLineUI implements UI {
 
     @Override
     public String getPlayerTypeFor(String mark) {
-        println("Select player " + mark + " type(computer/human):");
+        println("Select player " + mark + " type(" + Constants.COMPUTER + "/" + Constants.HUMAN +"):");
         return readln();
     }
-
 
     private String buildBoardOutput(String boardString) {
         String boardOutput = BOARD_TEMPLATE;
@@ -88,12 +88,12 @@ public class CommandLineUI implements UI {
         return input;
     }
 
-    private void println(String line){
+    private void println(String line) {
         try {
             out.write(line + "\n");
             out.flush();
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 }

@@ -60,27 +60,6 @@ public class Board {
         return null;
     }
 
-    public String toString() {
-        return squares;
-    }
-
-    private boolean isWinning(int[] combination) {
-        String mark = squareAt(combination[0]);
-
-        if(isEmpty(mark))
-            return false;
-
-        for (int i = 0; i < combination.length; i++) {
-            if (!squareAt(combination[i]).equals(mark))
-                return false;
-        }
-        return true;
-    }
-
-    private boolean isEmpty(String square) {
-        return square.equals(" ");
-    }
-
     public Iterator<Integer> validMoves() {
         return new Iterator<Integer>() {
             int current = -1;
@@ -108,5 +87,26 @@ public class Board {
                 throw new UnsupportedOperationException("I'm a Teapot");
             }
         };
+    }
+
+    public String toString() {
+        return squares;
+    }
+
+    private boolean isWinning(int[] combination) {
+        String mark = squareAt(combination[0]);
+
+        if(isEmpty(mark))
+            return false;
+
+        for (int i = 0; i < combination.length; i++) {
+            if (!squareAt(combination[i]).equals(mark))
+                return false;
+        }
+        return true;
+    }
+
+    private boolean isEmpty(String square) {
+        return square.equals(" ");
     }
 }

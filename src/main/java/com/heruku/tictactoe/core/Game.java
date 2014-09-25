@@ -1,31 +1,57 @@
 package com.heruku.tictactoe.core;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Game {
-    private final Board board;
-    final Player currentPlayer;
+    private Board board;
+    private List<Player> players;
+    private UI ui;
 
-    public Game(Player currentPlayer){
+    public Game(UI ui, List<Player> players){
         board = new Board("         ");
-        this.currentPlayer = currentPlayer;
+        this.players = players;
+        this.ui = ui;
     }
 
-    Game(Board board, Player currentPlayer){
+    Game(UI ui, Board board, List<Player> players){
         this.board = board;
-        this.currentPlayer = currentPlayer;
+        this.players = players;
+        this.ui = ui;
     }
 
-    public Game playMove(int index){
-        checkMoveValidity(index);
-        Board newBoard = board.markSquare(index, currentPlayer.getMark());
-        return new Game(newBoard, currentPlayer.next());
+    public void play() {
+        while(!isOver()){
+            printBoard();
+            playMove();
+        }
+        printBoard();
+        notifyWinner();
+    }
+
+    public void playMove(){
+        board  = currentPlayer().makeMove(board);
+        Collections.rotate(players, 1);
+    }
+
+
+    private void printBoard(){
+        ui.printBoard(boardString());
+    }
+
+    private void notifyWinner(){
+        if (hasWinner())
+            ui.notifyWinner(winner());
+        else
+            ui.notifyDraw();
     }
 
     public boolean isValidMove(int index){
         return board.isValidMove(index);
     }
 
-    public int getCurrentPlayerMove(){
-        return currentPlayer.getMove(board);
+    public Player currentPlayer() {
+        return players.get(0);
     }
 
     public boolean isOver(){
@@ -40,7 +66,7 @@ public class Game {
         return board.hasWinner();
     }
 
-    private boolean hasDraw() {
+    public boolean hasDraw() {
         return board.isFull() && !hasWinner();
     }
 

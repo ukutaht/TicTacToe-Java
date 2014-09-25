@@ -1,34 +1,28 @@
 package com.heruku.tictactoe.core;
 
-import com.heruku.tictactoe.strategies.HumanStrategy;
-import com.heruku.tictactoe.strategies.UnbeatableAIStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameBuilder {
     private UI ui;
+    private List<Player> players;
 
     public GameBuilder(UI ui) {
         this.ui = ui;
+        this.players = new ArrayList<Player>();
     }
 
     public GameBuilder withPlayerX(String type) {
-        Player.X(strategyForPlayerType(type));
+        players.add(new HumanPlayer("X", ui));
         return this;
     }
 
     public GameBuilder withPlayerO(String type) {
-        Player.O(strategyForPlayerType(type));
+        players.add(new HumanPlayer("O", ui));
         return this;
     }
 
-    private Strategy strategyForPlayerType(String type) {
-        if (type.equals("computer"))
-            return new UnbeatableAIStrategy();
-        if (type.equals("human"))
-            return new HumanStrategy(ui);
-        return null;
-    }
-
     public Game build() {
-        return new Game(Player.X());
+        return new Game(ui, players);
     }
 }

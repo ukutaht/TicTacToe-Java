@@ -1,5 +1,6 @@
-package com.heruku.tictactoe;
+package com.heruku.tictactoe.commandline;
 
+import com.heruku.tictactoe.commandline.CommandLineUI;
 import org.junit.*;
 import java.io.*;
 
@@ -75,13 +76,6 @@ public class CommandLineUITest {
         setup("");
         ui.notifyDraw();
         assertThat(out.toString(), containsString("draw"));
-    }
-
-    @Test
-    public void testShouldPlayAgain(){
-        setup("y\n");
-        ui.shouldPlayAgain();
-        assertThat(out.toString(), containsString("Play again"));
     }
 
     @Test

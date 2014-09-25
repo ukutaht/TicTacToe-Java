@@ -1,11 +1,8 @@
 package com.heruku.tictactoe.core;
 
-import com.heruku.tictactoe.CommandLineUI;
-import com.heruku.tictactoe.strategies.HumanStrategy;
-import com.heruku.tictactoe.strategies.UnbeatableAIStrategy;
+import com.heruku.tictactoe.commandline.CommandLineUI;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.Computer;
 
 import java.io.Reader;
 import java.io.StringReader;
@@ -30,15 +27,8 @@ public class GameBuilderTest {
     }
 
     @Test
-    public void testAddsPlayers(){
-        gameBuilder.withPlayerX("computer").withPlayerO("human").build();
-        assertTrue(Player.X().strategy instanceof UnbeatableAIStrategy);
-        assertTrue(Player.O().strategy instanceof HumanStrategy);
-    }
-
-    @Test
     public void startsWithPlayerX(){
         Game game = gameBuilder.withPlayerX("human").withPlayerO("computer").build();
-        assertEquals(Player.X(), game.currentPlayer);
+        assertEquals("X", game.currentPlayer().getMark());
     }
 }

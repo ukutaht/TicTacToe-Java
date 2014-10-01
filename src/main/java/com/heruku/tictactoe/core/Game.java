@@ -4,57 +4,34 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
-    private Board board;
-    private List<Player> players;
     private UI ui;
+    Board board;
+    List<Player> players;
 
-    public Game(UI ui, List<Player> players){
-        board = new Board("         ");
+    public Game(List<Player> players, UI ui) {
+        this.board = Board.EMPTY_BOARD();
         this.players = players;
         this.ui = ui;
     }
 
-    Game(UI ui, Board board, List<Player> players){
+    public Game(Board board) {
         this.board = board;
-        this.players = players;
-        this.ui = ui;
     }
 
-    public void play() {
-        while(!isOver()){
-            printBoard();
-            playMove();
+    public void playMove() {
+        int move = getCurrentPlayerMove();
+        if (isValid(move)) {
+            makeMove(move);
+        } else {
+            notifyOfInvalidMove();
         }
-        printBoard();
-        notifyWinner();
-    }
-
-    public void playMove(){
-        board  = currentPlayer().makeMove(board);
-        Collections.rotate(players, 1);
-    }
-
-
-    private void printBoard(){
-        ui.printBoard(boardString());
-    }
-
-    private void notifyWinner(){
-        if (hasWinner())
-            ui.notifyWinner(winner());
-        else
-            ui.notifyDraw();
-    }
-
-    public boolean isValidMove(int index){
-        return board.isValidMove(index);
     }
 
     public Player currentPlayer() {
         return players.get(0);
     }
 
-    public boolean isOver(){
+    public boolean isOver() {
         return hasWinner() || hasDraw();
     }
 
@@ -70,12 +47,24 @@ public class Game {
         return board.isFull() && !hasWinner();
     }
 
-    public String boardString(){
+    public String boardString() {
         return board.toString();
     }
 
-    private void checkMoveValidity(int index){
-        if(!isValidMove(index))
-            throw new RuntimeException("Invalid move: " + Integer.toString(index));
+    private void notifyOfInvalidMove() {
+        ui.notifyOfInvalidMove();
+    }
+
+    private void makeMove(int move) {
+        board = board.markSquare(move, currentPlayer().getMark());
+        Collections.rotate(players, 1);
+    }
+
+    private boolean isValid(int move) {
+        return board.isValidMove(move);
+    }
+
+    private int getCurrentPlayerMove() {
+        return currentPlayer().getMove(board);
     }
 }

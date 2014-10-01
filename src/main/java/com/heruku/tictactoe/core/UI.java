@@ -1,17 +1,16 @@
 package com.heruku.tictactoe.core;
 
 public interface UI {
-    void printBoard(String boardString);
-
-    void notifyOfInvalidMove();
-
-    void notifyWinner(String winner);
 
     int getMove();
 
     boolean shouldPlayAgain();
 
-    void notifyDraw();
+    void update(Game game);
 
-    String getPlayerTypeFor(String mark);
+    void notifyWinner(Game game);
+
+    void notifyOfInvalidMove();
+
+    GameType getGameType();
 }

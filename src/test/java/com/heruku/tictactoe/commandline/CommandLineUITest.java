@@ -1,39 +1,36 @@
 package com.heruku.tictactoe.commandline;
 
-import com.heruku.tictactoe.commandline.CommandLineUI;
-import org.junit.*;
-import java.io.*;
+import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Game;
+import com.heruku.tictactoe.core.GameType;
+import org.junit.Test;
+
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
 
 public class CommandLineUITest {
-    Reader in;
-    Writer out;
-    CommandLineUI ui;
+    private Writer out;
+    private CommandLineUI ui;
 
-    public void setup(String input){
-        in  = new StringReader(input);
+    void setup(String input) {
+        Reader in = new StringReader(input);
         out = new StringWriter();
         ui = new CommandLineUI(in, out);
     }
 
-    @Test
-    public void testPrintBoard(){
-        setup("");
-        ui.printBoard("XXXOOOXXX");
-
-        assertEquals(" X | X | X \n"
-                   + "---+---+---\n"
-                   + " O | O | O \n"
-                   + "---+---+---\n"
-                   + " X | X | X \n\n", out.toString());
+    public Game gameFromBoardState(String boardState) {
+        return new Game(new Board(boardState));
     }
 
     @Test
-    public void testPrintBoardPrintsIndices(){
+    public void updateShowsBoard() {
         setup("");
-        ui.printBoard(" XXO O XX");
+        ui.update(gameFromBoardState(" XXO O XX"));
 
         assertEquals(" 1 | X | X \n"
                    + "---+---+---\n"
@@ -43,68 +40,68 @@ public class CommandLineUITest {
     }
 
     @Test
-    public void testGetMove(){
+    public void notifiesOfInvalidMove() {
+        setup("");
+        ui.notifyOfInvalidMove();
+
+        assertThat(out.toString(), containsString("Invalid"));
+    }
+
+    @Test
+    public void getMove() {
         setup("3\n");
         assertEquals(2, ui.getMove());
         assertThat(out.toString(), containsString("move"));
     }
 
     @Test
-    public void testGetInputBadInput(){
-        setup("whatever\n55\n");
+    public void getInputBadInput() {
+        setup("whatever\n55\n\n");
         assertEquals(-1, ui.getMove());
         assertEquals(-1, ui.getMove());
         assertEquals(-1, ui.getMove());
     }
 
-    @Test
-    public void testNotifyWinnerX(){
-        setup("");
-        ui.notifyWinner("X");
-        assertThat(out.toString(), containsString("X Wins"));
-    }
 
     @Test
-    public void testNotifyWinnerO(){
-        setup("");
-        ui.notifyWinner("O");
-        assertThat(out.toString(), containsString("O Wins"));
-    }
-
-    @Test
-    public void testNotifyDraw(){
-        setup("");
-        ui.notifyDraw();
-        assertThat(out.toString(), containsString("draw"));
-    }
-
-    @Test
-    public void testShouldPlayAgainTrue(){
+    public void shouldPlayAgainTrue() {
         setup("y\n");
         assertTrue(ui.shouldPlayAgain());
     }
 
     @Test
-    public void testShouldPlayAgainFalse(){
+    public void shouldPlayAgainFalse() {
         setup("whatever\n");
         assertFalse(ui.shouldPlayAgain());
     }
 
     @Test
-    public void testShouldPlayAgainIsFalseWhenNoInputGiven(){
+    public void shouldPlayAgainIsFalseWhenNoInputGiven() {
         setup("");
         assertFalse(ui.shouldPlayAgain());
     }
 
     @Test
-    public void testGetsHumanType(){
-        setup("human\n");
-        assertEquals("human", ui.getPlayerTypeFor("X"));
+    public void humanVsHuman() {
+        setup("1\n");
+        assertEquals(GameType.HUMAN_VS_HUMAN, ui.getGameType());
     }
 
     @Test
-    public void testGetsComputerType(){
-        setup("computer\n");
-        assertEquals("computer", ui.getPlayerTypeFor("X"));
+    public void humanVsComputer() {
+        setup("2\n");
+        assertEquals(GameType.HUMAN_VS_COMPUTER, ui.getGameType());
+    }
+
+    @Test
+    public void computerVsHuman() {
+        setup("3\n");
+        assertEquals(GameType.COMPUTER_VS_HUMAN, ui.getGameType());
+    }
+
+    @Test
+    public void computerVsComputer() {
+        setup("4\n");
+        assertEquals(GameType.COMPUTER_VS_COMPUTER, ui.getGameType());
     }
 }

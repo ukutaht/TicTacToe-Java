@@ -1,9 +1,10 @@
 package com.heruku.tictactoe.core;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
-    private String squares;
+    private final String squares;
     private static final int[][] WINNING_COMBINATIONS = {
             {0, 1, 2},
             {3, 4, 5},
@@ -17,6 +18,10 @@ public class Board {
 
     public Board(String squares) {
         this.squares = squares;
+    }
+
+    public static Board EMPTY_BOARD() {
+        return new Board("         ");
     }
 
     public Board markSquare(int index, String mark) {
@@ -52,41 +57,21 @@ public class Board {
     }
 
     public String winner() {
-        for (int i = 0; i < WINNING_COMBINATIONS.length; i++) {
-            if (isWinning(WINNING_COMBINATIONS[i])) {
-                return squareAt(WINNING_COMBINATIONS[i][0]);
+        for (int[] WINNING_COMBINATION : WINNING_COMBINATIONS) {
+            if (isWinning(WINNING_COMBINATION)) {
+                return squareAt(WINNING_COMBINATION[0]);
             }
         }
         return null;
     }
 
-    public Iterator<Integer> validMoves() {
-        return new Iterator<Integer>() {
-            int current = -1;
-
-            @Override
-            public boolean hasNext() {
-                for (int i = current + 1; i < squares.length(); i++) {
-                    if(isValidMove(i))
-                        return true;
-                }
-                return false;
-            }
-
-            @Override
-            public Integer next() {
-                current++;
-                while(!isValidMove(current) && current < squares.length()){
-                    current++;
-                }
-                return current;
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("I'm a Teapot");
-            }
-        };
+    public List<Integer> validMoves() {
+        List<Integer> validMoves = new ArrayList<Integer>();
+        for (int i = 0; i < squares.length(); i++) {
+            if (isValidMove(i))
+                validMoves.add(i);
+        }
+        return validMoves;
     }
 
     public String toString() {
@@ -96,7 +81,7 @@ public class Board {
     private boolean isWinning(int[] combination) {
         String mark = squareAt(combination[0]);
 
-        if(isEmpty(mark))
+        if (isEmpty(mark))
             return false;
 
         for (int i = 0; i < combination.length; i++) {

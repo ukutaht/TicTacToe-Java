@@ -8,101 +8,91 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
 
 public class GameTest {
 
-    Game game;
+    private Game game;
 
     @Before
-    public void setupEmptyGame(){
+    public void setupEmptyGame() {
         List<Player> players = new ArrayList<Player>();
-        players.add(new FakePlayer());
-        this.game = new Game(new FakeUI(Arrays.asList(0)), players);
-    }
-
-    public void setupHumanGame(List<Integer> moves){
-        List<Player> players = new ArrayList<Player>();
-        UI ui = new FakeUI(moves);
-        players.add(new HumanPlayer("X", ui));
-        players.add(new HumanPlayer("O", ui));
-        this.game = new Game(ui, players);
+        players.add(new HumanPlayer(Constants.X, new FakeUI(Arrays.asList(0))));
+        players.add(new HumanPlayer(Constants.O, new FakeUI(Arrays.asList(0))));
+        this.game = new Game(players, new FakeUI());
     }
 
     @Test
-    public void testXWins() {
-        setupHumanGame(Arrays.asList(0, 8, 1, 7, 2));
-        game.play();
-        assertEquals("X", game.winner());
+    public void playMoveMakesMove() {
+        game.playMove();
+        assertEquals(Constants.X, game.board.squareAt(0));
     }
 
     @Test
-    public void testOWins() {
-        setupHumanGame(Arrays.asList(0, 8, 1, 7, 3, 6));
-        game.play();
-        assertEquals("O", game.winner());
+    public void playMoveAdvancesTurn() {
+        game.playMove();
+        assertEquals(Constants.O, game.currentPlayer().getMark());
     }
 
     @Test
-    public void testDrawGame() {
-        setupHumanGame(Arrays.asList(0, 1, 2, 4, 3, 5, 7, 6, 8));
-        game.play();
-        assertTrue(game.hasDraw());
+    public void playMoveDoesNotMakeMoveIfInvalid() {
+        game.playMove();
+        game.playMove();
+        assertEquals(Constants.X, game.board.squareAt(0));
     }
 
     @Test
-    public void testEmptyGameIsNotOver(){
+    public void emptyGameIsNotOver() {
         testIsNotOver("         ");
     }
 
     @Test
-    public void testHalfWayPlayedIsNotOver(){
+    public void halfWayPlayedIsNotOver() {
         testIsNotOver("XO  O  X ");
     }
 
     @Test
-    public void testIsOverHorizontalWin(){
+    public void isOverHorizontalWin() {
         testIsOver("XXX      ");
     }
 
     @Test
-    public void testIsOverVerticalWin(){
+    public void isOverVerticalWin() {
         testIsOver("X  X  X  ");
     }
 
     @Test
-    public void testIsOverDiagonalWin(){
+    public void isOverDiagonalWin() {
         testIsOver("X   X   X");
     }
 
     @Test
-    public void testIsOverDraw(){
+    public void isOverDraw() {
         testIsOver("XXOXOXOOX");
     }
 
     @Test
-    public void testWinnerX(){
+    public void winnerX() {
         testIsWinner("XXX      ", "X");
     }
 
     @Test
-    public void testWinnerO(){
+    public void winnerO() {
         testIsWinner("OOO      ", "O");
     }
 
-    private void testIsNotOver(String boardString){
-        game = new Game(null, new Board(boardString), null);
+    private void testIsNotOver(String boardString) {
+        game = new Game(new Board(boardString));
         assertFalse(game.isOver());
     }
 
     private void testIsOver(String boardString) {
-        game = new Game(null, new Board(boardString), null);
+        game = new Game(new Board(boardString));
         assertTrue(game.isOver());
     }
 
     private void testIsWinner(String boardString, String expectedWinner) {
-        game = new Game(null, new Board(boardString), null);
+        game = new Game(new Board(boardString));
         assertTrue(game.hasWinner());
         assertEquals(expectedWinner, game.winner());
     }

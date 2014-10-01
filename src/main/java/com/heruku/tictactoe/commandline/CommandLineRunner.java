@@ -1,41 +1,44 @@
 package com.heruku.tictactoe.commandline;
 
-import com.heruku.tictactoe.core.*;
+import com.heruku.tictactoe.core.Game;
+import com.heruku.tictactoe.core.GameFactory;
+import com.heruku.tictactoe.core.GameType;
+import com.heruku.tictactoe.core.UI;
+
 import java.io.*;
 
 public class CommandLineRunner {
     Game game;
-    private UI ui;
+    private final UI ui;
 
-    public CommandLineRunner(UI ui){
+    public CommandLineRunner(UI ui) {
         this.ui = ui;
     }
 
-    public void play(){
-       boolean playAgain = true;
-       while(playAgain){
-           buildGame();
-           game.play();
-           playAgain = ui.shouldPlayAgain();
-       }
+    public void play() {
+        boolean playAgain = true;
+        while (playAgain) {
+            buildGame();
+            playGame();
+            playAgain = ui.shouldPlayAgain();
+        }
     }
 
     private void buildGame() {
-        GameBuilder gameBuilder = new GameBuilder(ui);
-        game = gameBuilder.withPlayerX(getPlayerType(Constants.X))
-                          .withPlayerO(getPlayerType(Constants.O))
-                          .build();
+        GameType gameType = ui.getGameType();
+        game = new GameFactory(ui).forSelection(gameType);
     }
 
-    private String getPlayerType(String mark) {
-        String type = "";
-        while (!type.equals(Constants.COMPUTER) && !type.equals(Constants.HUMAN))
-            type = ui.getPlayerTypeFor(mark);
-        return type;
+    private void playGame() {
+        while (!game.isOver()) {
+            ui.update(game);
+            game.playMove();
+        }
+        ui.notifyWinner(game);
     }
 
     public static void main(String[] args) {
-        Reader in  = new InputStreamReader(System.in);
+        Reader in = new InputStreamReader(System.in);
         Writer out = new BufferedWriter(new OutputStreamWriter(System.out));
         CommandLineUI ui = new CommandLineUI(in, out);
         new CommandLineRunner(ui).play();

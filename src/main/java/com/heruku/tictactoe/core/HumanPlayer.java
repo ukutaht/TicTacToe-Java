@@ -1,8 +1,8 @@
 package com.heruku.tictactoe.core;
 
 public class HumanPlayer implements Player {
-    private UI ui;
-    private String mark;
+    private final String mark;
+    private final UI ui;
 
     public HumanPlayer(String mark, UI ui) {
         this.mark = mark;
@@ -15,13 +15,7 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public Board makeMove(Board board) {
-        int move = ui.getMove();
-        while(!board.isValidMove(move)) {
-            ui.notifyOfInvalidMove();
-            ui.printBoard(board.toString());
-            move = ui.getMove();
-        }
-        return board.markSquare(move, getMark());
+    public int getMove(Board board) {
+        return ui.getMove();
     }
 }

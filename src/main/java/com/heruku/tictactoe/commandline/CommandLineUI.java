@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.commandline;
 
-import com.heruku.tictactoe.core.Constants;
+import com.heruku.tictactoe.core.Game;
+import com.heruku.tictactoe.core.GameType;
 import com.heruku.tictactoe.core.UI;
 
 import java.io.BufferedReader;
@@ -13,70 +14,82 @@ public class CommandLineUI implements UI {
     private final BufferedReader in;
     private final Writer out;
     private static final String BOARD_TEMPLATE =
-            " 1 | 2 | 3 \n"
-          + "---+---+---\n"
-          + " 4 | 5 | 6 \n"
-          + "---+---+---\n"
-          + " 7 | 8 | 9 \n";
+                      " 1 | 2 | 3 \n"
+                    + "---+---+---\n"
+                    + " 4 | 5 | 6 \n"
+                    + "---+---+---\n"
+                    + " 7 | 8 | 9 \n\n";
 
-    public CommandLineUI(Reader in, Writer out){
+    public CommandLineUI(Reader in, Writer out) {
         this.in = new BufferedReader(in);
         this.out = out;
     }
 
     @Override
-    public void printBoard(String boardString){
-        String boardOutput = buildBoardOutput(boardString);
-        println(boardOutput);
+    public void update(Game game) {
+        printBoard(game.boardString());
     }
 
     @Override
-    public void notifyOfInvalidMove(){
-        println("Invalid move.\n");
+    public void notifyWinner(Game game) {
+        if (game.hasWinner())
+            print(game.winner() + " Wins!\n");
+        else
+            print("It's a draw!\n");
     }
 
     @Override
-    public void notifyWinner(String winner){
-        println(winner + " Wins!\n");
+    public void notifyOfInvalidMove() {
+        print("Invalid move, try again.\n");
     }
 
     @Override
     public int getMove() {
-        println("Your move: ");
-        String input = readln();
-        if(!input.matches("[0-9]"))
+        print("Your move: ");
+        String input = readLine();
+        if (!input.matches("[0-9]"))
             return -1;
         return Integer.parseInt(input) - 1;
     }
 
     @Override
-    public boolean shouldPlayAgain(){
-        println("Enter 'y' to play again");
-        String answer = readln();
+    public boolean shouldPlayAgain() {
+        print("Enter 'y' to play again\n");
+        String answer = readLine();
         return answer.equals("y");
     }
 
     @Override
-    public void notifyDraw() {
-        println("It's a draw!\n");
+    public GameType getGameType() {
+        presentGameTypeOptions();
+
+        int selection = Integer.parseInt(readLine()) - 1;
+        return GameType.values()[selection];
     }
 
-    @Override
-    public String getPlayerTypeFor(String mark) {
-        println("Select player " + mark + " type(" + Constants.COMPUTER + "/" + Constants.HUMAN +"):");
-        return readln();
+    private void presentGameTypeOptions() {
+        print("Select game type:\n");
+
+        for (int i = 0; i < GameType.values().length; i++) {
+            print("\t" + (i + 1) + ". " + GameType.values()[i].getName());
+            print("\n");
+        }
+    }
+
+    private void printBoard(String boardString) {
+        print(buildBoardOutput(boardString));
     }
 
     private String buildBoardOutput(String boardString) {
         String boardOutput = BOARD_TEMPLATE;
         for (int i = 0; i < boardString.length(); i++) {
-            if(boardString.charAt(i) != ' ')
+            if (boardString.charAt(i) != ' ')
                 boardOutput = boardOutput.replaceFirst(Integer.toString(i + 1), "" + boardString.charAt(i));
         }
         return boardOutput;
     }
 
-    private String readln(){
+    private String readLine() {
         String input;
         try {
             input = in.readLine();
@@ -88,9 +101,9 @@ public class CommandLineUI implements UI {
         return input;
     }
 
-    private void println(String line) {
+    private void print(String line) {
         try {
-            out.write(line + "\n");
+            out.write(line);
             out.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);

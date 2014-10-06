@@ -68,16 +68,16 @@
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="negativeMoveIsInvalid"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinner"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinnerOnFourByFour"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isFull"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="isFull"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="tooLargeMoveIndexIsInvalid"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinner"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isEmptySquare"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="tooLargeMoveIndexIsInvalid"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinner"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="isEmptySquare"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValidOnFourByFour"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinnerOnFourByFour"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinnerOnFourByFour"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="markSquare"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="noMovesValid"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="someMovesValid"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="someMovesValid"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="playedSquareIsInvalid"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="diagonalWinnerOnFourByFour"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isNotEmptySquare"/>

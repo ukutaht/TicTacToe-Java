@@ -24,7 +24,7 @@ public class CommandLineRunner {
     private void buildGame() {
         GameType gameType = IO.getGameType();
         BoardType boardType = IO.getBoardType();
-        game = new GameFactory(IO).forSelection(boardType, gameType);
+        game = new GameFactory(IO).build(boardType, gameType);
     }
 
     private void playGame() {

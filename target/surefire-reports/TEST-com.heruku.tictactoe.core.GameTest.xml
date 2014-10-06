@@ -72,11 +72,11 @@
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="emptyGameIsNotOver"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="isOverDraw"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="playMoveMakesMove"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.GameTest" name="playMoveDoesNotMakeMoveIfInvalid"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="playMoveDoesNotMakeMoveIfInvalid"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="isOverDiagonalWin"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOofTheTurn"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="winnerO"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="winnerX"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="playMoveAdvancesTurn"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.GameTest" name="playMoveAdvancesTurn"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="halfWayPlayedIsNotOver"/>
 </testsuite>

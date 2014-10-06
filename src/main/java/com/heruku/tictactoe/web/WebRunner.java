@@ -17,6 +17,10 @@ class WebRunner {
         factory = new GameFactory(io);
     }
 
+    public WebRunner(Game defaultGame) {
+        this.game = defaultGame;
+    }
+
     public String getMessage() {
         return io.getMessage();
     }
@@ -39,6 +43,6 @@ class WebRunner {
     }
 
     private void newGame(GameType type) {
-        game = factory.forSelection(BoardType.THREE_BY_THREE, type);
+        game = factory.build(BoardType.THREE_BY_THREE, type);
     }
 }

@@ -25,9 +25,9 @@ public class CommandLineIOTest {
     }
 
     @Test
-         public void updateShowsBoard() {
+    public void showsBoard() {
         setup("");
-        ui.update(board(" XXO O XX"));
+        ui.printBoard(board(" XXO O XX"));
 
         assertEquals(" 1 | X | X \n"
                    + "---+---+---\n"
@@ -37,9 +37,9 @@ public class CommandLineIOTest {
     }
 
     @Test
-    public void updateShowsFourByFourBoard() {
+    public void showsFourByFourBoard() {
         setup("");
-        ui.update(board(" XXO O XXO     X"));
+        ui.printBoard(board(" XXO O XXO     X"));
 
         assertEquals(" 1 | X | X | O \n"
                    + "---+---+---+---\n"

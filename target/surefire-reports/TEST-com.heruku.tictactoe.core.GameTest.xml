@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0" errors="0" skipped="0" tests="11" name="com.heruku.tictactoe.core.GameTest">
+<testsuite failures="0" time="0.001" errors="0" skipped="0" tests="14" name="com.heruku.tictactoe.core.GameTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
@@ -65,13 +65,16 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
+  <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOThatGameHasWinner"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOThatGameHasdraw"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="isOverVerticalWin"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="isOverHorizontalWin"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="emptyGameIsNotOver"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="isOverDraw"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="playMoveMakesMove"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="playMoveDoesNotMakeMoveIfInvalid"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.GameTest" name="playMoveDoesNotMakeMoveIfInvalid"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="isOverDiagonalWin"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOofTheTurn"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="winnerO"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="winnerX"/>
   <testcase time="0" classname="com.heruku.tictactoe.core.GameTest" name="playMoveAdvancesTurn"/>

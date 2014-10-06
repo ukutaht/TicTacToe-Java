@@ -36,18 +36,9 @@ class WebRunner {
     public void makeMove(Integer move) {
         io.setMove(move);
         game.playMove();
-        notifyUser();
-    }
-
-    private void notifyUser() {
-        if (game.isOver())
-            io.notifyWinner(game);
-        else
-            io.notifyTurn(game);
     }
 
     private void newGame(GameType type) {
         game = factory.forSelection(BoardType.THREE_BY_THREE, type);
-        notifyUser();
     }
 }

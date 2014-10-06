@@ -20,12 +20,23 @@ public class Game {
         this.io = io;
     }
 
-    public Game(Board board) {
-        this.board = board;
-    }
-
     public void playMove() {
         int move = getCurrentPlayerMove();
+        markMoveIfValid(move);
+        updateIO();
+    }
+
+    private void updateIO() {
+        if (hasWinner()) {
+            io.notifyWinner(winner());
+        } else if (hasDraw()) {
+            io.notifyOfDraw();
+        } else {
+            io.notifyOfTurn(currentPlayer());
+        }
+    }
+
+    private void markMoveIfValid(int move) {
         if (isValid(move)) {
             makeMove(move);
         } else {
@@ -41,8 +52,17 @@ public class Game {
         return hasWinner() || hasDraw();
     }
 
-    public String winner() {
-        return board.winner();
+    public Player winner() {
+        String winnerMark = board.winner();
+        return findPlayerByMark(winnerMark);
+    }
+
+    private Player findPlayerByMark(String winnerMark) {
+        for (Player player : players) {
+            if (player.getMark().equals(winnerMark))
+                return player;
+        }
+        throw new RuntimeException("Invalid winner mark " + winnerMark);
     }
 
     public boolean hasWinner() {

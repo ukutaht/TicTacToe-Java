@@ -17,20 +17,28 @@ public class CommandLineIO implements IO {
         this.out = out;
     }
 
-    public void update(Board board) {
-        printBoard(board);
-    }
-
-    public void notifyWinner(Game game) {
-        if (game.hasWinner())
-            print(game.winner() + " Wins!\n");
-        else
-            print("It's a draw!\n");
+    public void printBoard(Board board) {
+        print(buildBoardOutput(board));
     }
 
     @Override
     public void notifyOfInvalidMove() {
         print("Invalid move, try again.\n");
+    }
+
+    @Override
+    public void notifyOfTurn(Player player) {
+        print(player.getMark() + " turn\n");
+    }
+
+    @Override
+    public void notifyWinner(Player player) {
+        print(player.getMark() + " wins!\n");
+    }
+
+    @Override
+    public void notifyOfDraw() {
+        print("It's a draw!");
     }
 
     @Override
@@ -79,10 +87,6 @@ public class CommandLineIO implements IO {
             print("\t" + (i + 1) + ". " + GameType.values()[i].getName());
             print("\n");
         }
-    }
-
-    private void printBoard(Board board) {
-        print(buildBoardOutput(board));
     }
 
     private String buildBoardOutput(Board board) {

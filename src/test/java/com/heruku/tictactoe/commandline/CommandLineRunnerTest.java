@@ -15,6 +15,7 @@ public class CommandLineRunnerTest {
     private Writer out;
     private CommandLineRunner runner;
 
+    //varargs...
     void setupWithStringIO(String input) {
         Reader in = new StringReader(input);
         out = new StringWriter();
@@ -30,14 +31,14 @@ public class CommandLineRunnerTest {
     public void XWins() {
         setupFakeHumanGame("1\n9\n2\n8\n3\n");
         runner.play();
-        assertEquals("X", runner.game.winner());
+        assertEquals("X", runner.game.winner().getMark());
     }
 
     @Test
     public void OWins() {
         setupFakeHumanGame("1\n9\n2\n8\n4\n7\n");
         runner.play();
-        assertEquals("O", runner.game.winner());
+        assertEquals("O", runner.game.winner().getMark());
     }
 
     @Test
@@ -56,14 +57,14 @@ public class CommandLineRunnerTest {
 
     @Test
     public void winnerGetsPrinted() {
-        setupWithStringIO("1\n1\n9\n2\n8\n4\n7\n");
+        setupFakeHumanGame("9\n2\n8\n4\n7\n");
         runner.play();
-        assertThat(out.toString(), containsString(X + " Wins!"));
+        assertThat(out.toString(), containsString(X + " wins!"));
     }
 
     @Test
     public void drawGetsPrinted() {
-        setupWithStringIO("1\n1\n1\n2\n3\n5\n4\n6\n8\n7\n9\n");
+        setupFakeHumanGame("1\n2\n3\n5\n4\n6\n8\n7\n9\n");
         runner.play();
         assertThat(out.toString(), containsString("draw"));
     }
@@ -79,6 +80,6 @@ public class CommandLineRunnerTest {
     public void playsFourByFourGame() {
         setupWithStringIO("1\n2\n9\n13\n10\n14\n11\n15\n12\n\n");
         runner.play();
-        assertThat(out.toString(), containsString(X + " Wins"));
+        assertThat(out.toString(), containsString(X + " wins"));
     }
 }

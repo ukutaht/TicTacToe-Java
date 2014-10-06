@@ -18,12 +18,19 @@ public class WebIO implements IO {
     @Override
     public void notifyOfInvalidMove() {}
 
-    public void notifyWinner(Game game) {
-        this.message = game.winner() + " has won!";
+    @Override
+    public void notifyOfTurn(Player player) {
+        message = player.getMark() + " turn.";
     }
 
-    public void notifyTurn(Game game) {
-        message = game.currentPlayer().getMark() + " turn.";
+    @Override
+    public void notifyWinner(Player winner) {
+        message = winner.getMark() + " wins!";
+    }
+
+    @Override
+    public void notifyOfDraw() {
+        message = "It's a draw!";
     }
 
     public String getMessage() {

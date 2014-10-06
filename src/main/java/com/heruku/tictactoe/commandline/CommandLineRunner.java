@@ -29,11 +29,10 @@ public class CommandLineRunner {
 
     private void playGame() {
         while (!game.isOver()) {
-            IO.update(game.getBoard());
+            IO.printBoard(game.getBoard());
             game.playMove();
         }
-        IO.update(game.getBoard());
-        IO.notifyWinner(game);
+        IO.printBoard(game.getBoard());
     }
 
     public static void main(String[] args) {

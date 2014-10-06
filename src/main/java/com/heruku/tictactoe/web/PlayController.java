@@ -20,9 +20,10 @@ class PlayController {
     }
 
     @RequestMapping(method = GET)
-    public String getBoard(ModelMap locals) {
-        locals.addAttribute("board", runner.boardString());
-
+    public String showGame(ModelMap locals) {
+        locals.addAttribute("board", runner.getBoard());
+        locals.addAttribute("message", runner.getMessage());
+        locals.addAttribute("shouldMakeMove", runner.shouldMakeMove());
         return "play";
     }
 

@@ -1,28 +1,48 @@
 package com.heruku.tictactoe.core;
 
-import java.util.Arrays;
+import com.heruku.tictactoe.players.ComputerPlayer;
+import com.heruku.tictactoe.players.HumanPlayer;
 
-import static com.heruku.tictactoe.core.GameType.*;
+import java.util.Arrays;
+import java.util.List;
+
 import static com.heruku.tictactoe.core.Constants.O;
 import static com.heruku.tictactoe.core.Constants.X;
 
 public class GameFactory {
-    private final UI ui;
+    private final IO io;
 
-    public GameFactory(UI ui) {
-        this.ui = ui;
+    public GameFactory(IO io) {
+        this.io = io;
     }
 
-    public Game forSelection(GameType selection) {
-        if (selection == HUMAN_VS_HUMAN)
-            return new Game(Arrays.asList(humanPlayer(X), humanPlayer(O)), ui);
-        if (selection == HUMAN_VS_COMPUTER)
-            return new Game(Arrays.asList(humanPlayer(X), computerPlayer(O)), ui);
-        if (selection == COMPUTER_VS_HUMAN)
-            return new Game(Arrays.asList(computerPlayer(X), humanPlayer(O)), ui);
-        if (selection == COMPUTER_VS_COMPUTER)
-            return new Game(Arrays.asList(computerPlayer(X), computerPlayer(O)), ui);
-        throw new RuntimeException("Unexpected game type");
+    public Game getDefault() {
+        return forSelection(BoardType.THREE_BY_THREE, GameType.HUMAN_VS_HUMAN);
+    }
+
+    public Game forSelection(BoardType boardType, GameType gameType) {
+        List<Player> players = playersFor(gameType);
+        Board board = boardFor(boardType);
+
+        return new Game(board, players, io);
+    }
+
+    private List<Player> playersFor(GameType gameType) {
+        switch (gameType) {
+            case HUMAN_VS_HUMAN:       return Arrays.asList(humanPlayer(X), humanPlayer(O));
+            case HUMAN_VS_COMPUTER:    return Arrays.asList(humanPlayer(X), computerPlayer(O));
+            case COMPUTER_VS_HUMAN:    return Arrays.asList(computerPlayer(X), humanPlayer(O));
+            case COMPUTER_VS_COMPUTER: return Arrays.asList(computerPlayer(X), computerPlayer(O));
+            default:                   throw new RuntimeException("Unexpected game type");
+        }
+    }
+
+    private Board boardFor(BoardType boardType) {
+        switch (boardType) {
+            case THREE_BY_THREE: return Board.THREE_BY_THREE();
+            case FOUR_BY_FOUR:   return Board.FOUR_BY_FOUR();
+            default:             throw new RuntimeException("Unexpected board type");
+        }
     }
 
     private Player computerPlayer(String mark) {
@@ -30,6 +50,6 @@ public class GameFactory {
     }
 
     private Player humanPlayer(String mark) {
-        return new HumanPlayer(mark, ui);
+        return new HumanPlayer(mark, io);
     }
 }

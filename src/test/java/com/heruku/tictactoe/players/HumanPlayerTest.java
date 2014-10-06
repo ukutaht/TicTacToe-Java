@@ -1,5 +1,6 @@
-package com.heruku.tictactoe.core;
+package com.heruku.tictactoe.players;
 
+import com.heruku.tictactoe.core.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,8 +14,8 @@ public class HumanPlayerTest {
 
     @Before
     public void setup() {
-        UI ui = new FakeUI(Arrays.asList(0));
-        player = new HumanPlayer(Constants.X, ui);
+        IO io = new FakeIO(Arrays.asList(0));
+        player = new HumanPlayer(Constants.X, io);
         board = new Board("         ");
     }
 

@@ -17,35 +17,46 @@ public class BoardTest {
 
     @Test
     public void markSquare() {
-        setupBoard("        ");
+        board = Board.THREE_BY_THREE();
         Board newBoard = board.markSquare(0, "X");
         assertEquals("X", newBoard.squareAt(0));
     }
 
     @Test
     public void negativeMoveIsInvalid() {
-        setupBoard("         ");
+        board = Board.THREE_BY_THREE();
         assertFalse(board.isValidMove(-1));
     }
 
     @Test
     public void tooLargeMoveIndexIsInvalid() {
-        setupBoard("         ");
+        board = Board.THREE_BY_THREE();
         assertFalse(board.isValidMove(9));
     }
 
     @Test
+    public void validMoveOnFourByFour() {
+        board = Board.FOUR_BY_FOUR();
+        assertTrue(board.isValidMove(15));
+    }
+
+    @Test
     public void playedSquareIsInvalid() {
-        setupBoard("         ");
+        board = Board.THREE_BY_THREE();
         Board newBoard = board.markSquare(0, "X");
         assertFalse(newBoard.isValidMove(0));
     }
 
     @Test
     public void allMovesValid() {
-        setupBoard("         ");
-        List validMoves = board.validMoves();
-        assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8), validMoves);
+        board = Board.THREE_BY_THREE();
+        assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8), board.validMoves());
+    }
+
+    @Test
+    public void allMovesValidOnFourByFour() {
+        board = Board.FOUR_BY_FOUR();
+        assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), board.validMoves());
     }
 
     @Test
@@ -64,14 +75,26 @@ public class BoardTest {
 
     @Test
     public void isEmptySquare() {
-        setupBoard("        ");
+        board = Board.THREE_BY_THREE();
         assertTrue(board.isEmptySquare(0));
     }
 
     @Test
     public void isNotEmptySquare() {
-        setupBoard("X       ");
+        setupBoard("X        ");
         assertFalse(board.isEmptySquare(0));
+    }
+
+    @Test
+    public void threeByThreeRows() {
+        setupBoard("XOXOXO   ");
+        assertEquals(Arrays.asList("XOX", "OXO", "   "), board.rows());
+    }
+
+    @Test
+    public void fourByFourRows() {
+        setupBoard("XOXOXO   O     X");
+        assertEquals(Arrays.asList("XOXO", "XO  ", " O  ", "   X"), board.rows());
     }
 
     @Test
@@ -83,18 +106,38 @@ public class BoardTest {
     }
 
     @Test
+    public void horizontalWinnerOnFourByFour() {
+        testIsWinner("XXXX            ", "X");
+        testIsWinner("    XXXX        ", "X");
+        testIsWinner("        XXXX    ", "X");
+        testIsWinner("            XXXX", "X");
+    }
+
+    @Test
     public void verticalWinner() {
         testIsWinner("X  X  X  ", "X");
         testIsWinner(" X  X  X ", "X");
         testIsWinner("  X  X  X", "X");
-        testIsWinner("  O  O  O", "O");
+    }
+
+    @Test
+    public void verticalWinnerOnFourByFour() {
+        testIsWinner("X   X   X   X   ", "X");
+        testIsWinner(" X   X   X   X  ", "X");
+        testIsWinner("  X   X   X   X ", "X");
+        testIsWinner("   X   X   X   X", "X");
     }
 
     @Test
     public void isDiagonalWinner() {
         testIsWinner("X   X   X", "X");
         testIsWinner("  X X X  ", "X");
-        testIsWinner("  O O O  ", "O");
+    }
+
+    @Test
+    public void diagonalWinnerOnFourByFour() {
+        testIsWinner("X    X    X    X", "X");
+        testIsWinner("   X  X  X  X   ", "X");
     }
 
     @Test

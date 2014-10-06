@@ -15,9 +15,9 @@
     </bean>
 
     <bean class="com.heruku.tictactoe.web.WebRunner">
-        <property name="ui" ref="ui"/>
+        <constructor-arg ref="io"/>
     </bean>
 
-    <bean id="ui" class="com.heruku.tictactoe.web.WebUI">
+    <bean id="io" class="com.heruku.tictactoe.web.WebIO">
     </bean>
 </beans>

@@ -101,6 +101,8 @@ body {
   border-radius: 3px;
   background: #D4D5DB;
   text-align: center;
+  font-size: 100px;
+  line-height: 100px;
 }
 
 .grid-cell:last-child {
@@ -155,5 +157,8 @@ body {
 }
 .basic-grey .button:hover {
     background: #A14B3E;
-  }
+}
 
+a {
+  text-decoration: none;
+}

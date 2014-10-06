@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.004" errors="0" skipped="0" tests="14" name="com.heruku.tictactoe.core.BoardTest">
+<testsuite failures="0" time="0.003" errors="0" skipped="0" tests="21" name="com.heruku.tictactoe.core.BoardTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
@@ -65,18 +65,25 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testIsNotFull"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testNegativeMoveIsInvalid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testVerticalWinner"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="testSomeMovesValid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testMarkSquare"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testIsNotEmptySquare"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testAllMovesValid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testIsDiagonalWinner"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="testPlayedSquareIsInvalid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testIsFull"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testTooLargeMoveIndexIsInvalid"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="testIsEmptySquare"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="testNoMovesValid"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="testHorizontalWinner"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="negativeMoveIsInvalid"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinner"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinnerOnFourByFour"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isFull"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValid"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="tooLargeMoveIndexIsInvalid"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinner"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isEmptySquare"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValidOnFourByFour"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinnerOnFourByFour"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="markSquare"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="noMovesValid"/>
+  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="someMovesValid"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="playedSquareIsInvalid"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="diagonalWinnerOnFourByFour"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isNotEmptySquare"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isNotFull"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="threeByThreeRows"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="validMoveOnFourByFour"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="fourByFourRows"/>
+  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isDiagonalWinner"/>
 </testsuite>

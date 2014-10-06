@@ -5,23 +5,18 @@ import java.util.List;
 
 public class Board {
     private final String squares;
-    private static final int[][] WINNING_COMBINATIONS = {
-            {0, 1, 2},
-            {3, 4, 5},
-            {6, 7, 8},
-            {0, 3, 6},
-            {1, 4, 7},
-            {2, 5, 8},
-            {0, 4, 8},
-            {2, 4, 6}
-    };
 
     public Board(String squares) {
         this.squares = squares;
     }
 
-    public static Board EMPTY_BOARD() {
+    public static Board THREE_BY_THREE() {
         return new Board("         ");
+    }
+
+
+    public static Board FOUR_BY_FOUR() {
+        return new Board("                ");
     }
 
     public Board markSquare(int index, String mark) {
@@ -43,7 +38,7 @@ public class Board {
     }
 
     public boolean isValidMove(int index) {
-        if (index < 0 || index > 8)
+        if (index < 0 || index >= squares.length())
             return false;
         return isEmptySquare(index);
     }
@@ -57,9 +52,9 @@ public class Board {
     }
 
     public String winner() {
-        for (int[] WINNING_COMBINATION : WINNING_COMBINATIONS) {
-            if (isWinning(WINNING_COMBINATION)) {
-                return squareAt(WINNING_COMBINATION[0]);
+        for (int[] combination : WinningCombinations.forSize(squares.length())) {
+            if (isWinning(combination)) {
+                return squareAt(combination[0]);
             }
         }
         return null;
@@ -78,14 +73,18 @@ public class Board {
         return squares;
     }
 
+    public int size() {
+        return squares.length();
+    }
+
     private boolean isWinning(int[] combination) {
         String mark = squareAt(combination[0]);
 
         if (isEmpty(mark))
             return false;
 
-        for (int i = 0; i < combination.length; i++) {
-            if (!squareAt(combination[i]).equals(mark))
+        for (int squareIndex : combination) {
+            if (!squareAt(squareIndex).equals(mark))
                 return false;
         }
         return true;
@@ -93,5 +92,16 @@ public class Board {
 
     private boolean isEmpty(String square) {
         return square.equals(" ");
+    }
+
+    public List<String> rows() {
+        int sideLength = (int) Math.sqrt(squares.length());
+        List<String> rows = new ArrayList<String>();
+
+        for (int i = 0; i < squares.length(); i+=sideLength) {
+            rows.add(squares.substring(i, i + sideLength));
+        }
+
+        return rows;
     }
 }

@@ -1,18 +1,15 @@
 package com.heruku.tictactoe.commandline;
 
-import com.heruku.tictactoe.core.Game;
-import com.heruku.tictactoe.core.GameFactory;
-import com.heruku.tictactoe.core.GameType;
-import com.heruku.tictactoe.core.UI;
+import com.heruku.tictactoe.core.*;
 
 import java.io.*;
 
 public class CommandLineRunner {
     Game game;
-    private final UI ui;
+    private final CommandLineIO IO;
 
-    public CommandLineRunner(UI ui) {
-        this.ui = ui;
+    public CommandLineRunner(CommandLineIO io) {
+        this.IO = io;
     }
 
     public void play() {
@@ -20,27 +17,29 @@ public class CommandLineRunner {
         while (playAgain) {
             buildGame();
             playGame();
-            playAgain = ui.shouldPlayAgain();
+            playAgain = IO.shouldPlayAgain();
         }
     }
 
     private void buildGame() {
-        GameType gameType = ui.getGameType();
-        game = new GameFactory(ui).forSelection(gameType);
+        GameType gameType = IO.getGameType();
+        BoardType boardType = IO.getBoardType();
+        game = new GameFactory(IO).forSelection(boardType, gameType);
     }
 
     private void playGame() {
         while (!game.isOver()) {
-            ui.update(game);
+            IO.update(game.getBoard());
             game.playMove();
         }
-        ui.notifyWinner(game);
+        IO.update(game.getBoard());
+        IO.notifyWinner(game);
     }
 
     public static void main(String[] args) {
         Reader in = new InputStreamReader(System.in);
         Writer out = new BufferedWriter(new OutputStreamWriter(System.out));
-        CommandLineUI ui = new CommandLineUI(in, out);
+        CommandLineIO ui = new CommandLineIO(in, out);
         new CommandLineRunner(ui).play();
     }
 }

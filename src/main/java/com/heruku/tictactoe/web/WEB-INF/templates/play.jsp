@@ -10,9 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" href="/img/favicon.ico">
 
-        <link rel="stylesheet" href="/stylesheets/normalize.min.css">
         <link rel="stylesheet" href="/resources/main.css">
-
     </head>
     <body>
         <div class="header-container">
@@ -26,42 +24,42 @@
               <div class="form-container">
                 <form id="start-game-form" class='basic-grey' action='/start' method="POST">
                   <select name="game_type">
-                    <option value='human_vs_human'>Human vs Human</option>
-                    <option value='human_goes_first'>Human vs Computer</option>
-                    <option value='computer_goes_first'>Computer vs Human</option>
-                    <option value='computer_vs_computer'>Computer vs Computer</option>
+                    <option value='HUMAN_VS_HUMAN'>Human vs Human</option>
+                    <option value='HUMAN_VS_COMPUTER'>Human vs Computer</option>
+                    <option value='COMPUTER_VS_HUMAN'>Computer vs Human</option>
+                    <option value='COMPUTER_VS_COMPUTER'>Computer vs Computer</option>
                   </select>
                   <input type="submit" value="Start" class="button">
                 </form>
               </div>
 
+              <div class="messagebox">
+                <h3> ${message} </h3>
+              </div>
+
               <div class="game-container">
                 <div class="grid-container">
-                  <div class="grid-row">
-                    <c:forEach var="mark" items="${board.substring(0,3).toCharArray()}" varStatus="loop">
-                      <div class="grid-cell">
-                        <a href="/play/make_move?move=${loop.index}"><span>${mark}</span></a>
-                      </div>
-                    </c:forEach>
-                  </div>
 
-                  <div class="grid-row">
-                    <c:forEach var="mark" items="${board.substring(3,6).toCharArray()}" varStatus="loop">
-                      <div class="grid-cell">
-                        <a href="/play/make_move?move=${3 + loop.index}"><span>${mark}</span></a>
-                      </div>
-                    </c:forEach>
-                  </div>
+                  <c:forEach var="row" items="${board.rows()}" varStatus="rowIndex">
+                    <div class="grid-row">
+                      <c:forEach var="mark" items="${row.toCharArray()}" varStatus = "columnIndex">
+                      <c:set var="index" value="${rowIndex.index * 3 + columnIndex.index}"/>
+                        <div class="grid-cell">
+                            <a href="/play/make_move?move=${index}"><span class="mark">${mark}</span></a>
+                        </div>
+                      </c:forEach>
+                    </div>
+                  </c:forEach>
 
-                   <div class="grid-row">
-                     <c:forEach var="mark" items="${board.substring(6,9).toCharArray()}" varStatus="loop">
-                       <div class="grid-cell">
-                         <a href="/play/make_move?move=${6 + loop.index}"><span>${mark}</span></a>
-                       </div>
-                     </c:forEach>
-                   </div>
-               </div> <!-- #board -->
+                </div>
+              </div>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
+
+        <c:if test="${shouldMakeMove}">
+          <script>
+            window.location = "/play/make_move?move=-1"
+          </script>
+        </c:if>
     </body>
 </html>

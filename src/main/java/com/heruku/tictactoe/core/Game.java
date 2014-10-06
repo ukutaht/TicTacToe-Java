@@ -4,14 +4,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
-    private UI ui;
+    private IO io;
     Board board;
     List<Player> players;
 
-    public Game(List<Player> players, UI ui) {
-        this.board = Board.EMPTY_BOARD();
+    public Game(List<Player> players, IO io) {
+        this.board = Board.THREE_BY_THREE();
         this.players = players;
-        this.ui = ui;
+        this.io = io;
+    }
+
+    public Game(Board board, List<Player> players, IO io) {
+        this.board = board;
+        this.players = players;
+        this.io = io;
     }
 
     public Game(Board board) {
@@ -52,7 +58,7 @@ public class Game {
     }
 
     private void notifyOfInvalidMove() {
-        ui.notifyOfInvalidMove();
+        io.notifyOfInvalidMove();
     }
 
     private void makeMove(int move) {
@@ -61,10 +67,14 @@ public class Game {
     }
 
     private boolean isValid(int move) {
-        return board.isValidMove(move);
+        return board.isValidMove(move) && !isOver();
     }
 
     private int getCurrentPlayerMove() {
         return currentPlayer().getMove(board);
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }

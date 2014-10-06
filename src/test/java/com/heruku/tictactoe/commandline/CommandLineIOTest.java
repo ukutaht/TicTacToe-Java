@@ -1,8 +1,6 @@
 package com.heruku.tictactoe.commandline;
 
 import com.heruku.tictactoe.core.Board;
-import com.heruku.tictactoe.core.Game;
-import com.heruku.tictactoe.core.GameType;
 import org.junit.Test;
 
 import java.io.Reader;
@@ -10,33 +8,46 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import static com.heruku.tictactoe.core.BoardType.FOUR_BY_FOUR;
+import static com.heruku.tictactoe.core.BoardType.THREE_BY_THREE;
+import static com.heruku.tictactoe.core.GameType.*;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
 
-public class CommandLineUITest {
+public class CommandLineIOTest {
     private Writer out;
-    private CommandLineUI ui;
+    private CommandLineIO ui;
 
     void setup(String input) {
         Reader in = new StringReader(input);
         out = new StringWriter();
-        ui = new CommandLineUI(in, out);
-    }
-
-    public Game gameFromBoardState(String boardState) {
-        return new Game(new Board(boardState));
+        ui = new CommandLineIO(in, out);
     }
 
     @Test
-    public void updateShowsBoard() {
+         public void updateShowsBoard() {
         setup("");
-        ui.update(gameFromBoardState(" XXO O XX"));
+        ui.update(board(" XXO O XX"));
 
         assertEquals(" 1 | X | X \n"
                    + "---+---+---\n"
                    + " O | 5 | O \n"
                    + "---+---+---\n"
                    + " 7 | X | X \n\n", out.toString());
+    }
+
+    @Test
+    public void updateShowsFourByFourBoard() {
+        setup("");
+        ui.update(board(" XXO O XXO     X"));
+
+        assertEquals(" 1 | X | X | O \n"
+                   + "---+---+---+---\n"
+                   + " 5 | O | 7 | X \n"
+                   + "---+---+---+---\n"
+                   + " X | O | 11| 12\n"
+                   + "---+---+---+---\n"
+                   + " 13| 14| 15| X \n\n", out.toString());
     }
 
     @Test
@@ -56,8 +67,7 @@ public class CommandLineUITest {
 
     @Test
     public void getInputBadInput() {
-        setup("whatever\n55\n\n");
-        assertEquals(-1, ui.getMove());
+        setup("whatever\n\n");
         assertEquals(-1, ui.getMove());
         assertEquals(-1, ui.getMove());
     }
@@ -84,24 +94,40 @@ public class CommandLineUITest {
     @Test
     public void humanVsHuman() {
         setup("1\n");
-        assertEquals(GameType.HUMAN_VS_HUMAN, ui.getGameType());
+        assertEquals(HUMAN_VS_HUMAN, ui.getGameType());
     }
 
     @Test
     public void humanVsComputer() {
         setup("2\n");
-        assertEquals(GameType.HUMAN_VS_COMPUTER, ui.getGameType());
+        assertEquals(HUMAN_VS_COMPUTER, ui.getGameType());
     }
 
     @Test
     public void computerVsHuman() {
         setup("3\n");
-        assertEquals(GameType.COMPUTER_VS_HUMAN, ui.getGameType());
+        assertEquals(COMPUTER_VS_HUMAN, ui.getGameType());
     }
 
     @Test
     public void computerVsComputer() {
         setup("4\n");
-        assertEquals(GameType.COMPUTER_VS_COMPUTER, ui.getGameType());
+        assertEquals(COMPUTER_VS_COMPUTER, ui.getGameType());
+    }
+
+    @Test
+    public void threeByThree() {
+        setup("1\n");
+        assertEquals(THREE_BY_THREE, ui.getBoardType());
+    }
+
+    @Test
+    public void FourByFour() {
+        setup("2\n");
+        assertEquals(FOUR_BY_FOUR, ui.getBoardType());
+    }
+
+    private Board board(String boardString) {
+        return new Board(boardString);
     }
 }

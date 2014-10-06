@@ -1,40 +1,53 @@
 package com.heruku.tictactoe.web;
 
-import com.heruku.tictactoe.core.Game;
-import com.heruku.tictactoe.core.Player;
+import com.heruku.tictactoe.core.*;
 
-import java.util.ArrayList;
-
-public class WebRunner {
+class WebRunner {
     private Game game;
-    private WebUI ui;
+    private WebIO io;
+    private GameFactory factory;
 
-    public WebRunner() {
-        game = new Game(new ArrayList<Player>(), ui);
+    public WebRunner(WebIO io) {
+        this(new GameFactory(io).getDefault(), io);
+    }
+
+    public WebRunner(Game game, WebIO io) {
+        this.game = game;
+        this.io = io;
+        factory = new GameFactory(io);
+    }
+
+    public String getMessage() {
+        return io.getMessage();
+    }
+
+    public Board getBoard() {
+        return game.getBoard();
+    }
+
+    public boolean shouldMakeMove() {
+        return game.currentPlayer().isComputer() && !game.isOver();
+    }
+
+    public void newGameFromString(String gameType) {
+        newGame(GameType.valueOf(gameType));
     }
 
     public void makeMove(Integer move) {
-        ui.setMove(move);
+        io.setMove(move);
         game.playMove();
+        notifyUser();
     }
 
-    public String boardString() {
-        return game.boardString();
+    private void notifyUser() {
+        if (game.isOver())
+            io.notifyWinner(game);
+        else
+            io.notifyTurn(game);
     }
 
-    public void setGame(Game game) {
-        this.game = game;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setUi(WebUI ui) {
-        this.ui = ui;
-    }
-
-    public WebUI getUi() {
-        return ui;
+    private void newGame(GameType type) {
+        game = factory.forSelection(BoardType.THREE_BY_THREE, type);
+        notifyUser();
     }
 }

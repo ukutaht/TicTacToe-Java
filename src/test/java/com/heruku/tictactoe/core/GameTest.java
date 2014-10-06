@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.core;
 
 
+import com.heruku.tictactoe.players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,9 +18,9 @@ public class GameTest {
     @Before
     public void setupEmptyGame() {
         List<Player> players = new ArrayList<Player>();
-        players.add(new HumanPlayer(Constants.X, new FakeUI(Arrays.asList(0))));
-        players.add(new HumanPlayer(Constants.O, new FakeUI(Arrays.asList(0))));
-        this.game = new Game(players, new FakeUI());
+        players.add(new HumanPlayer(Constants.X, new FakeIO(Arrays.asList(0))));
+        players.add(new HumanPlayer(Constants.O, new FakeIO(Arrays.asList(0))));
+        this.game = new Game(players, new FakeIO());
     }
 
     @Test

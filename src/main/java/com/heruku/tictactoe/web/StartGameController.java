@@ -4,27 +4,54 @@ import com.heruku.tictactoe.core.Game;
 import com.heruku.tictactoe.core.GameFactory;
 import com.heruku.tictactoe.core.GameType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import static com.heruku.tictactoe.core.BoardType.THREE_BY_THREE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@RequestMapping("/start")
 class StartGameController {
-    private GameFactory factory;
-    private GameRepository repository;
+    private GameFactory gameFactory;
+    private GameRepository gameRepository;
+    private Game game;
+    private int gameId;
 
-    public StartGameController(GameFactory factory, GameRepository repository) {
-        this.factory = factory;
-        this.repository = repository;
+    public StartGameController(GameFactory gameFactory, GameRepository gameRepository) {
+        this.gameFactory = gameFactory;
+        this.gameRepository = gameRepository;
     }
 
-    @RequestMapping(method = POST)
+    @RequestMapping(value = "/start", method = POST)
     public String start(@RequestParam("game_type") String gameType) {
-        Game game = factory.build(THREE_BY_THREE, GameType.valueOf(gameType));
-        int id = repository.store(game);
-        return "redirect:/play/" + id;
+        buildGame(gameType);
+        storeGame();
+
+        return "redirect:/play/" + gameId;
+    }
+
+    @RequestMapping(value = "/", method = GET)
+    public String showStartForm(ModelMap locals) {
+        buildDummyPresenter(locals);
+
+        return "play";
+    }
+
+    private void buildGame(String gameType) {
+        game = gameFactory.build(THREE_BY_THREE, GameType.valueOf(gameType));
+    }
+
+    private void storeGame() {
+        gameId = gameRepository.store(game);
+    }
+
+    private void buildDummyPresenter(ModelMap locals) {
+        Game dummyGame = gameFactory.getDefault();
+        GamePresenter presenter = new GamePresenter(dummyGame, 0);
+        presenter.noLinks();
+
+        locals.addAttribute("presenter", presenter);
     }
 }

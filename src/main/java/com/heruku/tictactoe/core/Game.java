@@ -26,7 +26,7 @@ public class Game {
         updateIO();
     }
 
-    private void updateIO() {
+    public void updateIO() {
         if (hasWinner()) {
             io.notifyWinner(winner());
         } else if (hasDraw()) {

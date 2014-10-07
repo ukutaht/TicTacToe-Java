@@ -39,26 +39,15 @@
 
               <div class="game-container">
                 <div class="grid-container">
-
-                  <c:forEach var="row" items="${board.rows()}" varStatus="rowIndex">
-                    <div class="grid-row">
-                      <c:forEach var="mark" items="${row.toCharArray()}" varStatus = "columnIndex">
-                      <c:set var="index" value="${rowIndex.index * 3 + columnIndex.index}"/>
-                        <div class="grid-cell">
-                            <a href="/play/make_move?move=${index}"><span class="mark">${mark}</span></a>
-                        </div>
-                      </c:forEach>
-                    </div>
-                  </c:forEach>
-
+                    ${presenter.boardHtml()}
                 </div>
               </div>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 
-        <c:if test="${shouldMakeMove}">
+        <c:if test="${presenter.autoMove()}">
           <script>
-            window.location = "/play/make_move?move=-1"
+            window.location = "/make_move/${presenter.gameId()}?move=-1"
           </script>
         </c:if>
     </body>

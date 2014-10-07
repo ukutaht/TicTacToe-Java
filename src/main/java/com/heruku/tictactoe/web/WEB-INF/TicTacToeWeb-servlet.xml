@@ -9,15 +9,20 @@
     </bean>
 
     <bean class="com.heruku.tictactoe.web.StartGameController">
-        <constructor-arg name="factory" ref="factory"/>
-        <constructor-arg name="repository" ref="repository"/>
+        <constructor-arg name="gameFactory" ref="gameFactory"/>
+        <constructor-arg name="gameRepository" ref="gameRepository"/>
     </bean>
 
-    <bean id="factory" class="com.heruku.tictactoe.core.GameFactory" >
+    <bean class="com.heruku.tictactoe.web.PlayController">
+        <constructor-arg name="gameRepository" ref="gameRepository"/>
+        <constructor-arg name="io" ref="io"/>
+    </bean>
+
+    <bean id="gameFactory" class="com.heruku.tictactoe.core.GameFactory" >
         <constructor-arg ref="io" />
     </bean>
 
-    <bean id="repository" class="com.heruku.tictactoe.web.GameRepository">
+    <bean id="gameRepository" class="com.heruku.tictactoe.web.GameRepository">
     </bean>
 
     <bean id="io" class="com.heruku.tictactoe.web.WebIO">

@@ -86,18 +86,6 @@ public class BoardTest {
     }
 
     @Test
-    public void threeByThreeRows() {
-        setupBoard("XOXOXO   ");
-        assertEquals(Arrays.asList("XOX", "OXO", "   "), board.rows());
-    }
-
-    @Test
-    public void fourByFourRows() {
-        setupBoard("XOXOXO   O     X");
-        assertEquals(Arrays.asList("XOXO", "XO  ", " O  ", "   X"), board.rows());
-    }
-
-    @Test
     public void horizontalWinner() {
         testIsWinner("XXX      ", "X");
         testIsWinner("   XXX   ", "X");

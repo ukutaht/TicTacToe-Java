@@ -64,4 +64,17 @@ public class PlayControllerTest {
 
         assertEquals("redirect:/play/" + id, redirect);
     }
+
+
+    @Test(expected = GameNotFoundException.class)
+    public void throwsWhenGameIsNotFound() {
+        controller.showGame(999, locals);
+    }
+
+    @Test
+    public void handlesNotFound() {
+        String template = controller.gameNotFound();
+
+        assertEquals("gameNotFound", template);
+    }
 }

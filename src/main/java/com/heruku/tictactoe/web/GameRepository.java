@@ -14,7 +14,11 @@ public class GameRepository {
     }
 
     public Game findById(int id) {
-        return games.get(id - 1);
+        try {
+            return games.get(id - 1);
+        } catch(IndexOutOfBoundsException e) {
+            throw new GameNotFoundException();
+        }
     }
 
     public int size() {

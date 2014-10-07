@@ -3,6 +3,7 @@ package com.heruku.tictactoe.web;
 import com.heruku.tictactoe.core.Game;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,6 +41,11 @@ class PlayController {
         makeMoveOnGame(move);
 
         return "redirect:/play/" + id;
+    }
+
+    @ExceptionHandler(GameNotFoundException.class)
+    public String gameNotFound() {
+        return "gameNotFound";
     }
 
     private void makeMoveOnGame(Integer move) {

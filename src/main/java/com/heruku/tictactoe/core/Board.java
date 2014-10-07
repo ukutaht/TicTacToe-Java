@@ -93,15 +93,4 @@ public class Board {
     private boolean isEmpty(String square) {
         return square.equals(" ");
     }
-
-    public List<String> rows() {
-        int sideLength = (int) Math.sqrt(squares.length());
-        List<String> rows = new ArrayList<String>();
-
-        for (int i = 0; i < squares.length(); i+=sideLength) {
-            rows.add(squares.substring(i, i + sideLength));
-        }
-
-        return rows;
-    }
 }

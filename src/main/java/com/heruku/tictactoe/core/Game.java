@@ -23,10 +23,10 @@ public class Game {
     public void playMove() {
         int move = getCurrentPlayerMove();
         markMoveIfValid(move);
-        updateIO();
+        notifyIO();
     }
 
-    public void updateIO() {
+    public void notifyIO() {
         if (hasWinner()) {
             io.notifyWinner(winner());
         } else if (hasDraw()) {

@@ -34,38 +34,38 @@
       <file leaf-file-name="PlayController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/PlayController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="990">
-              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="990">
+              <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gameNotFound.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WEB-INF/templates/gameNotFound.jsp">
+      <file leaf-file-name="WebIO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WebIO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-              <caret line="0" column="54" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayControllerTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/PlayControllerTest.java">
+      <file leaf-file-name="CommandLineIO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/commandline/CommandLineIO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9336283" vertical-offset="583" max-vertical-offset="1110">
-              <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1980">
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/GameRepository.java">
+      <file leaf-file-name="Game.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/core/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.6637168" vertical-offset="60" max-vertical-offset="1575">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -102,7 +102,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/core/FakeIO.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/commandline/CommandLineRunnerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/core/GameTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/commandline/CommandLineIO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/commandline/CommandLineRunner.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/commandline/CommandLineIOTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WebIO.java" />
@@ -112,7 +111,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/StartupTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/ApplicationBootstrapTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/core/GameFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/core/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WEB-INF/TicTacToeWeb-servlet.xml" />
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/WebIOTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -132,6 +130,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/PlayController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WEB-INF/templates/gameNotFound.jsp" />
         <option value="$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/PlayControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/commandline/CommandLineIO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/core/Game.java" />
       </list>
     </option>
   </component>
@@ -525,6 +525,36 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TicTacToe" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TicTacToe" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tictactoe" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commandline" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -592,7 +622,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WEB-INF/templates" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in TicTacToe">
+  <component name="RunManager" selected="Application.CommandLineRunner">
     <configuration default="false" name="CommandLineRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.heruku.tictactoe.commandline.CommandLineRunner" />
       <option name="VM_PARAMETERS" />
@@ -895,8 +925,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.All in TicTacToe" />
-        <item index="1" class="java.lang.String" itemvalue="Application.CommandLineRunner" />
+        <item index="0" class="java.lang.String" itemvalue="Application.CommandLineRunner" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.All in TicTacToe" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.All in TicTacToe (3)" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.All in TicTacToe (2)" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.com.heruku.tictactoe.web in TicTacToe" />
@@ -960,7 +990,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25894135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38618925" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38618925" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4219949" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1208,7 +1238,7 @@
         <state vertical-scroll-proportion="0.30882353" vertical-offset="0" max-vertical-offset="680">
           <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1237,14 +1267,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/core/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86283183" vertical-offset="15" max-vertical-offset="1575">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/WebIOTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9336283" vertical-offset="253" max-vertical-offset="795">
@@ -1252,22 +1274,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WebIO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13274336" vertical-offset="0" max-vertical-offset="675">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/commandline/CommandLineIO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5769231" vertical-offset="0" max-vertical-offset="1965">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1303,14 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/GamePresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8340708" vertical-offset="58" max-vertical-offset="570">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/StartGameController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.80088496" vertical-offset="418" max-vertical-offset="930">
@@ -1336,7 +1334,7 @@
         <state vertical-scroll-proportion="0.03318584" vertical-offset="30" max-vertical-offset="870">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
-            <element signature="e#817#825#0" expanded="true" />
+            <element signature="e#817#825#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1354,7 +1352,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="138" max-vertical-offset="870">
           <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1407,6 +1405,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/PlayControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9336283" vertical-offset="583" max-vertical-offset="1110">
+          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WEB-INF/templates/gameNotFound.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="501">
@@ -1415,18 +1421,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/PlayController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/commandline/CommandLineIO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="990">
-          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1980">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/heruku/tictactoe/web/PlayControllerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/GamePresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9336283" vertical-offset="583" max-vertical-offset="1110">
-          <caret line="78" column="5" selection-start-line="78" selection-start-column="5" selection-end-line="78" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.8340708" vertical-offset="58" max-vertical-offset="570">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/PlayController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="990">
+          <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/web/WebIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/heruku/tictactoe/core/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6637168" vertical-offset="60" max-vertical-offset="1575">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding />
         </state>
       </provider>

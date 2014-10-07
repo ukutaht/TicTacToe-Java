@@ -18,6 +18,7 @@ public class CommandLineIO implements IO {
     }
 
     public void printBoard(Board board) {
+        print("\n\n");
         print(buildBoardOutput(board));
     }
 

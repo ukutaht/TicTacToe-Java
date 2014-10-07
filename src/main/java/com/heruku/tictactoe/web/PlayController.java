@@ -63,6 +63,6 @@ class PlayController {
     }
 
     private void updateIO() {
-        game.updateIO();
+        game.notifyIO();
     }
 }

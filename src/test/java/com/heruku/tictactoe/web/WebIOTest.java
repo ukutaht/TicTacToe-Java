@@ -1,5 +1,6 @@
 package com.heruku.tictactoe.web;
 
+import com.heruku.tictactoe.core.Board;
 import com.heruku.tictactoe.players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,20 +30,27 @@ public class WebIOTest {
     public void notifiesOfTurn() {
         io.notifyOfTurn(new HumanPlayer(X, io));
 
-       assertThat(io.getMessage(), containsString("X turn"));
+       assertThat(io.getNotification(), containsString("X turn"));
     }
 
     @Test
     public void testNotifyWinner() {
         io.notifyWinner(new HumanPlayer(X, io));
 
-        assertThat(io.getMessage(), containsString("X wins"));
+        assertThat(io.getNotification(), containsString("X wins"));
     }
 
     @Test
     public void testNotifyOfDraw(){
         io.notifyOfDraw();
 
-        assertThat(io.getMessage(), containsString("draw"));
+        assertThat(io.getNotification(), containsString("draw"));
+    }
+
+    @Test
+    public void rendersBoardHtml() {
+        io.showBoard(Board.THREE_BY_THREE("XXX      "));
+
+        assertThat(io.boardMarkup(1), containsString("div"));
     }
 }

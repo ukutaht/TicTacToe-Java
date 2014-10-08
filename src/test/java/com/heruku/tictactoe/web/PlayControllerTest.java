@@ -7,10 +7,12 @@ import org.junit.Test;
 import org.springframework.ui.ModelMap;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
-import static org.hamcrest.CoreMatchers.containsString;
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertEquals;
 
 public class PlayControllerTest {
@@ -18,8 +20,9 @@ public class PlayControllerTest {
     private PlayController controller;
     private GameRepository repository;
     private Game emptyGame;
-    private Game XWinsGame;
     private ModelMap locals;
+    private Game computerVsHumanGame;
+    private Game XWinsGame;
 
     @Before
     public void setup() {
@@ -29,24 +32,59 @@ public class PlayControllerTest {
         locals = new ModelMap();
 
         emptyGame = new GameFactory(io).getDefault();
-        XWinsGame = new Game(new Board("XXX  OOO "), Arrays.<Player>asList(new HumanPlayer(Constants.X, io)), io);
+        emptyGame.start();
+
+        computerVsHumanGame = new GameFactory(new FakeIO()).build(BoardType.THREE_BY_THREE, GameType.COMPUTER_VS_HUMAN);
+        List<Player> players = Arrays.<Player>asList(new HumanPlayer(Constants.X, new FakeIO()));
+        XWinsGame = new Game(Board.THREE_BY_THREE("XXX   OOO"), players, new FakeIO());
     }
 
     @Test
-    public void buildsPresenter() {
+    public void addsGameIdToLocals() {
         int id = repository.store(emptyGame);
         controller.showGame(id, locals);
-        GamePresenter presenter = (GamePresenter) locals.get("presenter");
 
-        assertEquals(id, presenter.gameId());
+        assertEquals(id, locals.get("gameId"));
     }
 
     @Test
-    public void notifiesUser() {
+        public void addsNotificationToLocals() {
+        int id = repository.store(emptyGame);
+        controller.showGame(id, locals);
+
+        assertThat((String) locals.get("notification"), containsString("turn"));
+    }
+
+    @Test
+    public void addsBoardMarkupToLocals() {
+        int id = repository.store(emptyGame);
+        controller.showGame(id, locals);
+
+        assertThat((String) locals.get("boardMarkup"), containsString("div"));
+    }
+
+    @Test
+    public void autoMoveIsTrueWhenComputerMove() {
+        int id = repository.store(computerVsHumanGame);
+        controller.showGame(id, locals);
+
+        assertTrue((Boolean) locals.get("autoMove"));
+    }
+
+    @Test
+    public void doesNotAutoMoveWhenHumanTurn() {
+        int id = repository.store(emptyGame);
+        controller.showGame(id, locals);
+
+        assertFalse((Boolean) locals.get("autoMove"));
+    }
+
+    @Test
+    public void doesNotAutoMoveWhenGameIsOver() {
         int id = repository.store(XWinsGame);
         controller.showGame(id, locals);
 
-        assertThat((String) locals.get("message"), containsString("X wins"));
+        assertFalse((Boolean) locals.get("autoMove"));
     }
 
     @Test

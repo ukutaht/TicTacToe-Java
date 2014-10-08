@@ -16,7 +16,7 @@ public class HumanPlayerTest {
     public void setup() {
         IO io = new FakeIO(Arrays.asList(0));
         player = new HumanPlayer(Constants.X, io);
-        board = new Board("         ");
+        board = Board.THREE_BY_THREE();
     }
 
     @Test

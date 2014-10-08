@@ -19,7 +19,7 @@ public class ComputerPlayerTest {
 
     @Test
     public void takesTheWin() {
-        Board board = new Board("OO " +
+        Board board = Board.THREE_BY_THREE("OO " +
                                 "XX " +
                                 " X ");
         assertEquals(2, computer.getMove(board));
@@ -27,18 +27,18 @@ public class ComputerPlayerTest {
 
     @Test
     public void blockOpponentsWin() {
-        Board board = new Board("XX " +
-                                "   " +
-                                "O  ");
+        Board board = Board.THREE_BY_THREE("XX " +
+                                           "   " +
+                                           "O  ");
         assertEquals(2, computer.getMove(board));
     }
 
     @Test
     public void blocksAsX() {
         computer = new ComputerPlayer(X);
-        Board board = new Board("XXO" +
-                                " O " +
-                                "   ");
+        Board board = Board.THREE_BY_THREE("XXO" +
+                                           " O " +
+                                           "   ");
         assertEquals(6, computer.getMove(board));
     }
 }

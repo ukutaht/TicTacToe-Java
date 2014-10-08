@@ -34,20 +34,20 @@
               </div>
 
               <div class="messagebox">
-                <h3> ${message} </h3>
+                <h3> ${notification} </h3>
               </div>
 
               <div class="game-container">
                 <div class="grid-container">
-                    ${presenter.boardHtml()}
+                    ${boardMarkup}
                 </div>
               </div>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 
-        <c:if test="${presenter.autoMove()}">
+        <c:if test="${autoMove}">
           <script>
-            window.location = "/make_move/${presenter.gameId()}?move=-1"
+            window.location = "/make_move/${gameId}?move=-1"
           </script>
         </c:if>
     </body>

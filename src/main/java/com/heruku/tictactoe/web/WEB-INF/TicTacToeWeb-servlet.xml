@@ -9,13 +9,13 @@
     </bean>
 
     <bean class="com.heruku.tictactoe.web.StartGameController">
-        <constructor-arg name="gameFactory" ref="gameFactory"/>
-        <constructor-arg name="gameRepository" ref="gameRepository"/>
+        <constructor-arg ref="gameFactory"/>
+        <constructor-arg ref="gameRepository"/>
     </bean>
 
     <bean class="com.heruku.tictactoe.web.PlayController">
-        <constructor-arg name="gameRepository" ref="gameRepository"/>
-        <constructor-arg name="io" ref="io"/>
+        <constructor-arg ref="gameRepository"/>
+        <constructor-arg ref="io"/>
     </bean>
 
     <bean id="gameFactory" class="com.heruku.tictactoe.core.GameFactory" >

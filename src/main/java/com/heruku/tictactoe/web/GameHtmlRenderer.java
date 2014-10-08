@@ -1,24 +1,23 @@
 package com.heruku.tictactoe.web;
 
 import com.googlecode.jatl.Html;
-import com.heruku.tictactoe.core.Game;
+import com.heruku.tictactoe.core.Board;
 
 import java.io.StringWriter;
 import java.io.Writer;
 
 public class GameHtmlRenderer {
-    private final Game game;
     private final Writer out = new StringWriter();
     private final int gameId;
-    private boolean addLinks = true;
+    private final Board board;
 
-    public GameHtmlRenderer(Game game, int gameId) {
-        this.game = game;
+    public GameHtmlRenderer(Board board, int gameId) {
+        this.board = board;
         this.gameId = gameId;
     }
 
     public String render() {
-        for (int i = 0; i < game.boardString().length(); i++) {
+        for (int i = 0; i < board.toString().length(); i++) {
             renderCellAtIndex(i);
         }
         return out.toString();
@@ -34,14 +33,14 @@ public class GameHtmlRenderer {
                 end();
           }
 
-            private void renderMark(int square) {
-                span().classAttr("mark").text(game.getBoard().squareAt(square));
-                end();
-            }
-
             private void renderMarkWithLink(int square) {
                 a().href(makeLink(square));
                 renderMark(square);
+                end();
+            }
+
+            private void renderMark(int square) {
+                span().classAttr("mark").text(board.squareAt(square));
                 end();
             }
         };
@@ -52,13 +51,6 @@ public class GameHtmlRenderer {
     }
 
     private boolean needsLink(int square) {
-        if (addLinks)
-            return game.getBoard().isValidMove(square) && !game.isOver();
-        else
-            return false;
-    }
-
-    public void noLinks() {
-        addLinks = false;
+        return board.isValidMove(square) &&!board.isOver();
     }
 }

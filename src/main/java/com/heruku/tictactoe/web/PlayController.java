@@ -24,10 +24,7 @@ class PlayController {
 
     @RequestMapping(value = "play/{id}", method = GET)
     public String showGame(@PathVariable int id , ModelMap locals) {
-        gameId = id;
-
-        findGame();
-        updateIO();
+        findGame(id);
         buildLocals(locals);
 
         return "play";
@@ -35,9 +32,7 @@ class PlayController {
 
     @RequestMapping(value = "/make_move/{id}", method = GET)
     public String makeMove(@PathVariable int id, @RequestParam("move") Integer move) {
-        gameId = id;
-
-        findGame();
+        findGame(id);
         makeMoveOnGame(move);
 
         return "redirect:/play/" + id;
@@ -54,15 +49,18 @@ class PlayController {
     }
 
     private void buildLocals(ModelMap locals) {
-        locals.addAttribute("presenter", new GamePresenter(game, gameId));
-        locals.addAttribute("message", io.getMessage());
+        locals.addAttribute("gameId", gameId);
+        locals.addAttribute("notification", io.getNotification());
+        locals.addAttribute("boardMarkup", io.boardMarkup(gameId));
+        locals.addAttribute("autoMove", shouldAutoMove());
     }
 
-    private void findGame() {
+    private boolean shouldAutoMove() {
+        return game.currentPlayer().isComputer() && !game.isOver();
+    }
+
+    private void findGame(int id) {
+        gameId = id;
         game = gameRepository.findById(gameId);
-    }
-
-    private void updateIO() {
-        game.notifyIO();
     }
 }

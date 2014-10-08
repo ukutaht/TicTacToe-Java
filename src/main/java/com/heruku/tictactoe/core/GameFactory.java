@@ -29,19 +29,27 @@ public class GameFactory {
 
     private List<Player> playersFor(GameType gameType) {
         switch (gameType) {
-            case HUMAN_VS_HUMAN:       return asList(humanPlayer(X), humanPlayer(O));
-            case HUMAN_VS_COMPUTER:    return asList(humanPlayer(X), computerPlayer(O));
-            case COMPUTER_VS_HUMAN:    return asList(computerPlayer(X), humanPlayer(O));
-            case COMPUTER_VS_COMPUTER: return asList(computerPlayer(X), computerPlayer(O));
-            default:                   throw new RuntimeException("Unexpected game type");
+            case HUMAN_VS_HUMAN:
+                return asList(humanPlayer(X), humanPlayer(O));
+            case HUMAN_VS_COMPUTER:
+                return asList(humanPlayer(X), computerPlayer(O));
+            case COMPUTER_VS_HUMAN:
+                return asList(computerPlayer(X), humanPlayer(O));
+            case COMPUTER_VS_COMPUTER:
+                return asList(computerPlayer(X), computerPlayer(O));
+            default:
+                throw new RuntimeException("Unexpected game type");
         }
     }
 
     private Board boardFor(BoardType boardType) {
         switch (boardType) {
-            case THREE_BY_THREE: return Board.THREE_BY_THREE();
-            case FOUR_BY_FOUR:   return Board.FOUR_BY_FOUR();
-            default:             throw new RuntimeException("Unexpected board type");
+            case THREE_BY_THREE:
+                return Board.THREE_BY_THREE();
+            case FOUR_BY_FOUR:
+                return Board.FOUR_BY_FOUR();
+            default:
+                throw new RuntimeException("Unexpected board type");
         }
     }
 

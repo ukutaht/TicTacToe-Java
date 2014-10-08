@@ -61,8 +61,8 @@ public class ComputerPlayer implements Player {
 
         for (Integer move : board.validMoves()) {
             int score = -negamax(board.markSquare(move, playerMark), opponentFor(playerMark), -beta, -alpha);
-            bestScore = max(score, bestScore);
-            alpha = max(bestScore, alpha);
+            bestScore = Math.max(score, bestScore);
+            alpha = Math.max(bestScore, alpha);
             if(alpha >= beta)
                 break;
         }
@@ -70,25 +70,14 @@ public class ComputerPlayer implements Player {
         return bestScore;
     }
 
-    private int max(int first, int second) {
-        if (first > second)
-            return first;
-        return second;
-    }
-
-
     private String opponentFor(String mark) {
-        if (mark.equals(X))
-            return O;
-        return X;
+        return mark.equals(X) ? O : X;
     }
 
     private int getScore(Board board, String playerMark) {
-        String winner = board.winner();
-
-        if (winner == null)
+        if (board.hasDraw())
             return 0;
-        if (winner.equals(playerMark))
+        if (board.winner().equals(playerMark))
             return 1;
         return -1;
     }

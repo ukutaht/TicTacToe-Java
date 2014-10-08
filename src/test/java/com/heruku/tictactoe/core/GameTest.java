@@ -27,9 +27,17 @@ public class GameTest {
         List<Player> players = new ArrayList<Player>();
         players.add(new HumanPlayer(X, new FakeIO(Arrays.asList(0))));
         players.add(new HumanPlayer(O, new FakeIO(Arrays.asList(0))));
-        Board board = new Board(boardString);
+        Board board = Board.THREE_BY_THREE(boardString);
         this.io = new FakeIO();
         this.game = new Game(board, players, io);
+    }
+
+
+    @Test
+    public void initShowsBoardAndTellsTurn() {
+        game.start();
+        assertThat(io.getOut(), containsString("board"));
+        assertThat(io.getOut(), containsString("turn"));
     }
 
     @Test
@@ -49,6 +57,12 @@ public class GameTest {
         game.playMove();
         game.playMove();
         assertEquals(X, game.board.squareAt(0));
+    }
+
+    @Test
+    public void showsBoard() {
+        game.playMove();
+        assertThat(io.getOut(), containsString("board"));
     }
 
     @Test
@@ -73,55 +87,55 @@ public class GameTest {
 
     @Test
     public void emptyGameIsNotOver() {
-        testIsNotOver("         ");
+        assertIsNotOver("         ");
     }
 
     @Test
     public void halfWayPlayedIsNotOver() {
-        testIsNotOver("XO  O  X ");
+        assertIsNotOver("XO  O  X ");
     }
 
     @Test
     public void isOverHorizontalWin() {
-        testIsOver("XXX      ");
+        assertIsOver("XXX      ");
     }
 
     @Test
     public void isOverVerticalWin() {
-        testIsOver("X  X  X  ");
+        assertIsOver("X  X  X  ");
     }
 
     @Test
     public void isOverDiagonalWin() {
-        testIsOver("X   X   X");
+        assertIsOver("X   X   X");
     }
 
     @Test
     public void isOverDraw() {
-        testIsOver("XXOXOXOOX");
+        assertIsOver("XXOXOXOOX");
     }
 
     @Test
     public void winnerX() {
-        testIsWinner("XXX      ", X);
+        assertIsWinner("XXX      ", X);
     }
 
     @Test
     public void winnerO() {
-        testIsWinner("OOO      ", O);
+        assertIsWinner("OOO      ", O);
     }
 
-    private void testIsNotOver(String boardString) {
+    private void assertIsNotOver(String boardString) {
         setupGameWithBoard(boardString);
         assertFalse(game.isOver());
     }
 
-    private void testIsOver(String boardString) {
+    private void assertIsOver(String boardString) {
         setupGameWithBoard(boardString);
         assertTrue(game.isOver());
     }
 
-    private void testIsWinner(String boardString, String expectedWinner) {
+    private void assertIsWinner(String boardString, String expectedWinner) {
         setupGameWithBoard(boardString);
         assertTrue(game.hasWinner());
         assertEquals(expectedWinner, game.winner().getMark());

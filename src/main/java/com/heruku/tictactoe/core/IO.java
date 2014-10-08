@@ -4,6 +4,8 @@ public interface IO {
 
     int getMove();
 
+    void showBoard(Board board);
+
     void notifyOfInvalidMove();
 
     void notifyOfTurn(Player player);

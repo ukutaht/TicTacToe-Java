@@ -5,24 +5,33 @@ import java.util.List;
 
 public class Board {
     private final String squares;
+    private final int[][] winningCombinations;
 
-    public Board(String squares) {
+    public Board(String squares, int[][] winningCombinations) {
         this.squares = squares;
+        this.winningCombinations = winningCombinations;
     }
 
     public static Board THREE_BY_THREE() {
-        return new Board("         ");
+        return new Board("         ", WinningCombinations.THREE_BY_THREE);
     }
 
+    public static Board THREE_BY_THREE(String squares) {
+        return new Board(squares, WinningCombinations.THREE_BY_THREE);
+    }
 
     public static Board FOUR_BY_FOUR() {
-        return new Board("                ");
+        return new Board("                ", WinningCombinations.FOUR_BY_FOUR);
+    }
+
+    public static Board FOUR_BY_FOUR(String squares) {
+        return new Board(squares, WinningCombinations.FOUR_BY_FOUR);
     }
 
     public Board markSquare(int index, String mark) {
         StringBuilder newString = new StringBuilder(squares);
         newString.setCharAt(index, mark.charAt(0));
-        return new Board(newString.toString());
+        return new Board(newString.toString(), winningCombinations);
     }
 
     public String squareAt(int index) {
@@ -52,7 +61,7 @@ public class Board {
     }
 
     public String winner() {
-        for (int[] combination : WinningCombinations.forSize(squares.length())) {
+        for (int[] combination : winningCombinations) {
             if (isWinning(combination)) {
                 return squareAt(combination[0]);
             }
@@ -92,5 +101,13 @@ public class Board {
 
     private boolean isEmpty(String square) {
         return square.equals(" ");
+    }
+
+    public boolean isOver() {
+        return hasWinner() || hasDraw();
+    }
+
+    public boolean hasDraw() {
+        return isFull() && !hasWinner();
     }
 }

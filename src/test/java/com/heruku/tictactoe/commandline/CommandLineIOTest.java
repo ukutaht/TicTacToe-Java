@@ -27,9 +27,9 @@ public class CommandLineIOTest {
     @Test
     public void showsBoard() {
         setup("");
-        ui.printBoard(board(" XXO O XX"));
+        ui.printBoard(Board.THREE_BY_THREE(" XXO O XX"));
 
-        assertEquals(" 1 | X | X \n"
+        assertEquals("\n\n 1 | X | X \n"
                    + "---+---+---\n"
                    + " O | 5 | O \n"
                    + "---+---+---\n"
@@ -39,9 +39,9 @@ public class CommandLineIOTest {
     @Test
     public void showsFourByFourBoard() {
         setup("");
-        ui.printBoard(board(" XXO O XXO     X"));
+        ui.printBoard(Board.FOUR_BY_FOUR(" XXO O XXO     X"));
 
-        assertEquals(" 1 | X | X | O \n"
+        assertEquals("\n\n 1 | X | X | O \n"
                    + "---+---+---+---\n"
                    + " 5 | O | 7 | X \n"
                    + "---+---+---+---\n"
@@ -56,13 +56,6 @@ public class CommandLineIOTest {
         ui.notifyOfInvalidMove();
 
         assertThat(out.toString(), containsString("Invalid"));
-    }
-
-    @Test
-    public void getMove() {
-        setup("3\n");
-        assertEquals(2, ui.getMove());
-        assertThat(out.toString(), containsString("move"));
     }
 
     @Test
@@ -125,9 +118,5 @@ public class CommandLineIOTest {
     public void FourByFour() {
         setup("2\n");
         assertEquals(FOUR_BY_FOUR, ui.getBoardType());
-    }
-
-    private Board board(String boardString) {
-        return new Board(boardString);
     }
 }

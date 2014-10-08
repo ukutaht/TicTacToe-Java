@@ -20,9 +20,15 @@ public class Game {
         this.io = io;
     }
 
+    public void start() {
+        showBoard();
+        notifyIO();
+    }
+
     public void playMove() {
         int move = getCurrentPlayerMove();
         markMoveIfValid(move);
+        showBoard();
         notifyIO();
     }
 
@@ -49,7 +55,7 @@ public class Game {
     }
 
     public boolean isOver() {
-        return hasWinner() || hasDraw();
+        return board.isOver();
     }
 
     public Player winner() {
@@ -70,11 +76,15 @@ public class Game {
     }
 
     public boolean hasDraw() {
-        return board.isFull() && !hasWinner();
+        return board.hasDraw();
     }
 
     public String boardString() {
         return board.toString();
+    }
+
+    private void showBoard() {
+        io.showBoard(board);
     }
 
     private void notifyOfInvalidMove() {

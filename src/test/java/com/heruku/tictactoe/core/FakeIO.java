@@ -23,6 +23,11 @@ public class FakeIO implements IO {
     }
 
     @Override
+    public void showBoard(Board board) {
+        out += "board";
+    }
+
+    @Override
     public void notifyOfInvalidMove() {
         this.out += "Invalid move";
     }

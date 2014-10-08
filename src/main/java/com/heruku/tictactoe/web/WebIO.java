@@ -4,10 +4,19 @@ import com.heruku.tictactoe.core.*;
 
 public class WebIO implements IO {
     private Integer move;
-    private String message;
+    private String notification;
+    private Board board;
 
     public void setMove(Integer move) {
         this.move = move;
+    }
+
+    public String getNotification() {
+        return notification;
+    }
+
+    public String boardMarkup(int gameId) {
+        return new GameHtmlRenderer(board , gameId).render();
     }
 
     @Override
@@ -16,24 +25,25 @@ public class WebIO implements IO {
     }
 
     @Override
+    public void showBoard(Board board) {
+        this.board = board;
+    }
+
+    @Override
     public void notifyOfInvalidMove() {}
 
     @Override
     public void notifyOfTurn(Player player) {
-        message = player.getMark() + " turn.";
+        notification = player.getMark() + " turn.";
     }
 
     @Override
     public void notifyWinner(Player winner) {
-        message = winner.getMark() + " wins!";
+        notification = winner.getMark() + " wins!";
     }
 
     @Override
     public void notifyOfDraw() {
-        message = "It's a draw!";
-    }
-
-    public String getMessage() {
-        return message;
+        notification = "It's a draw!";
     }
 }

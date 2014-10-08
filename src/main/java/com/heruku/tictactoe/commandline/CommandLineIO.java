@@ -23,13 +23,19 @@ public class CommandLineIO implements IO {
     }
 
     @Override
+    public void showBoard(Board board) {
+        print("\n\n");
+        print(buildBoardOutput(board));
+    }
+
+    @Override
     public void notifyOfInvalidMove() {
-        print("Invalid move, try again.\n");
+        print("Invalid move, try again\n");
     }
 
     @Override
     public void notifyOfTurn(Player player) {
-        print(player.getMark() + " turn\n");
+        print(player.getMark() + " turn:");
     }
 
     @Override
@@ -44,11 +50,10 @@ public class CommandLineIO implements IO {
 
     @Override
     public int getMove() {
-        print("Your move: ");
         String input = readLine();
         if (!input.matches("\\d+"))
             return -1;
-        return Integer.parseInt(input) - 1;
+        return toZeroIndexedInt(input);
     }
 
     public boolean shouldPlayAgain() {
@@ -60,15 +65,14 @@ public class CommandLineIO implements IO {
     public GameType getGameType() {
         presentGameTypeOptions();
 
-        int selection = Integer.parseInt(readLine()) - 1;
+        int selection = toZeroIndexedInt(readLine());
         return GameType.values()[selection];
     }
-
 
     public BoardType getBoardType() {
         presentBoardTypeOptions();
 
-        int selection = Integer.parseInt(readLine()) - 1;
+        int selection = toZeroIndexedInt(readLine());
         return BoardType.values()[selection];
     }
 
@@ -76,7 +80,7 @@ public class CommandLineIO implements IO {
         print("Select board type:\n");
 
         for (int i = 0; i < BoardType.values().length; i++) {
-            print("\t" + (i + 1) + ". " + BoardType.values()[i].getName());
+            print("\t" + toOneIndexed(i) + ". " + BoardType.values()[i].getName());
             print("\n");
         }
     }
@@ -85,7 +89,7 @@ public class CommandLineIO implements IO {
         print("Select game type:\n");
 
         for (int i = 0; i < GameType.values().length; i++) {
-            print("\t" + (i + 1) + ". " + GameType.values()[i].getName());
+            print("\t" + toOneIndexed(i) + ". " + GameType.values()[i].getName());
             print("\n");
         }
     }
@@ -127,5 +131,13 @@ public class CommandLineIO implements IO {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private int toZeroIndexedInt(String line) {
+        return Integer.parseInt(line) - 1;
+    }
+
+    private int toOneIndexed(int index) {
+        return index + 1;
     }
 }

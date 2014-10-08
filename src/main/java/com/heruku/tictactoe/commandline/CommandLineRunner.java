@@ -28,11 +28,10 @@ public class CommandLineRunner {
     }
 
     private void playGame() {
+        game.start();
         while (!game.isOver()) {
-            IO.printBoard(game.getBoard());
             game.playMove();
         }
-        IO.printBoard(game.getBoard());
     }
 
     public static void main(String[] args) {

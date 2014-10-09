@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.StringUtils;
 
+import static com.heruku.tictactoe.core.PlayerMark.X;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -35,7 +36,7 @@ public class GameHtmlRendererTest {
 
     @Test
     public void doesNotAddLinkForPlayedSquares() {
-        board = board.markSquare(0, "X");
+        board = board.markSquare(0, X.toString());
         renderer = new GameHtmlRenderer(board, 0);
 
         int links = StringUtils.countOccurrencesOf(renderer.render(), "<a href");

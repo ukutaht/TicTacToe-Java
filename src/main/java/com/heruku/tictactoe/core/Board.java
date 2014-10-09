@@ -30,7 +30,7 @@ public class Board {
 
     public Board markSquare(int index, String mark) {
         StringBuilder newString = new StringBuilder(squares);
-        newString.setCharAt(index, mark.charAt(0));
+        newString.setCharAt(index, mark.toString().charAt(0));
         return new Board(newString.toString(), winningCombinations);
     }
 

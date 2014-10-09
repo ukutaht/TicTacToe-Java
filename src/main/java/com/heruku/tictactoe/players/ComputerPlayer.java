@@ -2,22 +2,20 @@ package com.heruku.tictactoe.players;
 
 import com.heruku.tictactoe.core.Board;
 import com.heruku.tictactoe.core.Player;
+import com.heruku.tictactoe.core.PlayerMark;
 
 import java.util.List;
 import java.util.Random;
 
-import static com.heruku.tictactoe.core.Constants.O;
-import static com.heruku.tictactoe.core.Constants.X;
-
 public class ComputerPlayer implements Player {
-    private final String mark;
+    private final PlayerMark mark;
 
-    public ComputerPlayer(String mark) {
+    public ComputerPlayer(PlayerMark mark) {
         this.mark = mark;
     }
 
     @Override
-    public String getMark() {
+    public PlayerMark getMark() {
         return mark;
     }
 
@@ -37,7 +35,7 @@ public class ComputerPlayer implements Player {
         int bestMove = -10;
 
         for (Integer move : validMoves) {
-            int score = -negamax(board.markSquare(move, mark), opponentFor(mark), -10, 10);
+            int score = -negamax(board.markSquare(move, mark.toString()), mark.opponent(), -10, 10);
             if (score > bestScore) {
                 bestScore = score;
                 bestMove = move;
@@ -53,14 +51,14 @@ public class ComputerPlayer implements Player {
         return validMoves.get(randomIndex);
     }
 
-    private int negamax(Board board, String playerMark, int alpha, int beta) {
+    private int negamax(Board board, PlayerMark mark, int alpha, int beta) {
         if (board.hasWinner() || board.isFull())
-            return getScore(board, playerMark);
+            return getScore(board, mark);
 
         int bestScore = -10;
 
         for (Integer move : board.validMoves()) {
-            int score = -negamax(board.markSquare(move, playerMark), opponentFor(playerMark), -beta, -alpha);
+            int score = -negamax(board.markSquare(move, mark.toString()), mark.opponent(), -beta, -alpha);
             bestScore = Math.max(score, bestScore);
             alpha = Math.max(bestScore, alpha);
             if(alpha >= beta)
@@ -70,14 +68,10 @@ public class ComputerPlayer implements Player {
         return bestScore;
     }
 
-    private String opponentFor(String mark) {
-        return mark.equals(X) ? O : X;
-    }
-
-    private int getScore(Board board, String playerMark) {
+    private int getScore(Board board, PlayerMark mark) {
         if (board.hasDraw())
             return 0;
-        if (board.winner().equals(playerMark))
+        if (board.winner().equals(mark.toString()))
             return 1;
         return -1;
     }

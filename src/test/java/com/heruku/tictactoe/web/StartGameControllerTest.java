@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.ui.ModelMap;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StartGameControllerTest {
     private GameRepository repo;
@@ -38,7 +38,7 @@ public class StartGameControllerTest {
     public void initializesGame() {
         controller.start(GameType.HUMAN_VS_HUMAN.toString());
 
-        assertThat(io.getOut(), containsString("turn"));
+        assertTrue(io.calledMethods().contains("notifyOfTurn"));
     }
 
     @Test

@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static com.heruku.tictactoe.core.PlayerMark.*;
 import static org.junit.Assert.assertEquals;
 
 public class HumanPlayerTest {
@@ -15,7 +16,7 @@ public class HumanPlayerTest {
     @Before
     public void setup() {
         IO io = new FakeIO(Arrays.asList(0));
-        player = new HumanPlayer(Constants.X, io);
+        player = new HumanPlayer(X, io);
         board = Board.THREE_BY_THREE();
     }
 

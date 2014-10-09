@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.heruku.tictactoe.core.Constants.*;
-import static org.hamcrest.Matchers.containsString;
+import static com.heruku.tictactoe.core.PlayerMark.O;
+import static com.heruku.tictactoe.core.PlayerMark.X;
 import static org.junit.Assert.*;
 
 public class GameTest {
 
+    public static final int MOVE = 0;
     private Game game;
     private FakeIO io;
 
@@ -25,25 +26,24 @@ public class GameTest {
 
     public void setupGameWithBoard(String boardString) {
         List<Player> players = new ArrayList<Player>();
-        players.add(new HumanPlayer(X, new FakeIO(Arrays.asList(0))));
-        players.add(new HumanPlayer(O, new FakeIO(Arrays.asList(0))));
+        players.add(new HumanPlayer(X, new FakeIO(Arrays.asList(MOVE))));
+        players.add(new HumanPlayer(O, new FakeIO(Arrays.asList(MOVE))));
         Board board = Board.THREE_BY_THREE(boardString);
         this.io = new FakeIO();
         this.game = new Game(board, players, io);
     }
 
-
     @Test
     public void initShowsBoardAndTellsTurn() {
         game.start();
-        assertThat(io.getOut(), containsString("board"));
-        assertThat(io.getOut(), containsString("turn"));
+        assertIOReceived("showBoard");
+        assertIOReceived("notifyOfTurn");
     }
 
     @Test
-    public void playMoveMakesMove() {
+    public void playMoveMarksSquare() {
         game.playMove();
-        assertEquals(X, game.board.squareAt(0));
+        assertEquals(X.toString(), game.board.squareAt(MOVE));
     }
 
     @Test
@@ -53,36 +53,36 @@ public class GameTest {
     }
 
     @Test
-    public void playMoveDoesNotMakeMoveIfInvalid() {
+    public void playMoveDoesNotMarkSquareIfInvalid() {
         game.playMove();
         game.playMove();
-        assertEquals(X, game.board.squareAt(0));
+        assertEquals(X.toString(), game.board.squareAt(MOVE));
     }
 
     @Test
     public void showsBoard() {
         game.playMove();
-        assertThat(io.getOut(), containsString("board"));
+        assertIOReceived("showBoard");
     }
 
     @Test
     public void notifiesIOofTheTurn() {
         game.playMove();
-        assertThat(io.getOut(), containsString("turn"));
+        assertIOReceived("notifyOfTurn");
     }
 
     @Test
     public void notifiesIOThatGameHasWinner() {
         setupGameWithBoard(" XX O  O ");
         game.playMove();
-        assertThat(io.getOut(), containsString("wins"));
+        assertIOReceived("notifyWinner");
     }
 
     @Test
     public void notifiesIOThatGameHasdraw() {
         setupGameWithBoard(" OXXOXOXO");
         game.playMove();
-        assertThat(io.getOut(), containsString("draw"));
+        assertIOReceived("notifyOfDraw");
     }
 
     @Test
@@ -135,9 +135,13 @@ public class GameTest {
         assertTrue(game.isOver());
     }
 
-    private void assertIsWinner(String boardString, String expectedWinner) {
+    private void assertIsWinner(String boardString, PlayerMark expectedWinner) {
         setupGameWithBoard(boardString);
         assertTrue(game.hasWinner());
         assertEquals(expectedWinner, game.winner().getMark());
+    }
+
+    private void assertIOReceived(String method) {
+        assertTrue(io.calledMethods().contains(method));
     }
 }

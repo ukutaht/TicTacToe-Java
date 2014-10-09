@@ -5,7 +5,7 @@ import com.heruku.tictactoe.players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.heruku.tictactoe.core.Constants.X;
+import static com.heruku.tictactoe.core.PlayerMark.X;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;

@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.heruku.tictactoe.core.PlayerMark.*;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -35,7 +36,7 @@ public class PlayControllerTest {
         emptyGame.start();
 
         computerVsHumanGame = new GameFactory(new FakeIO()).build(BoardType.THREE_BY_THREE, GameType.COMPUTER_VS_HUMAN);
-        List<Player> players = Arrays.<Player>asList(new HumanPlayer(Constants.X, new FakeIO()));
+        List<Player> players = Arrays.<Player>asList(new HumanPlayer(X, new FakeIO()));
         XWinsGame = new Game(Board.THREE_BY_THREE("XXX   OOO"), players, new FakeIO());
     }
 

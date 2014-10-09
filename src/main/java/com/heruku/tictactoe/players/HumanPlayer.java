@@ -3,18 +3,19 @@ package com.heruku.tictactoe.players;
 import com.heruku.tictactoe.core.Board;
 import com.heruku.tictactoe.core.IO;
 import com.heruku.tictactoe.core.Player;
+import com.heruku.tictactoe.core.PlayerMark;
 
 public class HumanPlayer implements Player {
-    private final String mark;
+    private final PlayerMark mark;
     private final IO io;
 
-    public HumanPlayer(String mark, IO io) {
+    public HumanPlayer(PlayerMark mark, IO io) {
         this.mark = mark;
         this.io = io;
     }
 
     @Override
-    public String getMark() {
+    public PlayerMark getMark() {
         return mark;
     }
 

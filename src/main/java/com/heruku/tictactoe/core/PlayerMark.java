@@ -13,4 +13,10 @@ public enum PlayerMark {
     public String toString() {
         return mark;
     }
+
+    public PlayerMark opponent() {
+        if (this == X)
+            return O;
+        return X;
+    }
 }

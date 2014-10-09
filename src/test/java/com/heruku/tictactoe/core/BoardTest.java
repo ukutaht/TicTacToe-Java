@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.heruku.tictactoe.core.PlayerMark.*;
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -26,7 +27,7 @@ public class BoardTest {
 
     @Test
     public void markSquare() {
-        Board newBoard = board.markSquare(0, "X");
+        Board newBoard = board.markSquare(0, X.toString());
         assertEquals("X", newBoard.squareAt(0));
     }
 
@@ -48,7 +49,7 @@ public class BoardTest {
 
     @Test
     public void playedSquareIsInvalid() {
-        Board newBoard = board.markSquare(0, "X");
+        Board newBoard = board.markSquare(0, X.toString());
         assertFalse(newBoard.isValidMove(0));
     }
 

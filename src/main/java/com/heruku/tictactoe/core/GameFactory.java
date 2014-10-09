@@ -5,8 +5,7 @@ import com.heruku.tictactoe.players.HumanPlayer;
 
 import java.util.List;
 
-import static com.heruku.tictactoe.core.Constants.O;
-import static com.heruku.tictactoe.core.Constants.X;
+import static com.heruku.tictactoe.core.PlayerMark.*;
 import static java.util.Arrays.asList;
 
 public class GameFactory {
@@ -53,11 +52,11 @@ public class GameFactory {
         }
     }
 
-    private Player computerPlayer(String mark) {
+    private Player computerPlayer(PlayerMark mark) {
         return new ComputerPlayer(mark);
     }
 
-    private Player humanPlayer(String mark) {
+    private Player humanPlayer(PlayerMark mark) {
         return new HumanPlayer(mark, io);
     }
 }

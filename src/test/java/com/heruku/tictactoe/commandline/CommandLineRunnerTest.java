@@ -7,7 +7,8 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import static com.heruku.tictactoe.core.Constants.X;
+import static com.heruku.tictactoe.core.PlayerMark.O;
+import static com.heruku.tictactoe.core.PlayerMark.X;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
 
@@ -31,14 +32,14 @@ public class CommandLineRunnerTest {
     public void XWins() {
         setupFakeHumanGame("1\n9\n2\n8\n3\n");
         runner.play();
-        assertEquals("X", runner.game.winner().getMark());
+        assertEquals(X, runner.game.winner().getMark());
     }
 
     @Test
     public void OWins() {
         setupFakeHumanGame("1\n9\n2\n8\n4\n7\n");
         runner.play();
-        assertEquals("O", runner.game.winner().getMark());
+        assertEquals(O, runner.game.winner().getMark());
     }
 
     @Test
@@ -59,7 +60,7 @@ public class CommandLineRunnerTest {
     public void winnerGetsPrinted() {
         setupFakeHumanGame("9\n2\n8\n4\n7\n");
         runner.play();
-        assertThat(out.toString(), containsString(X + " wins!"));
+        assertThat(out.toString(), containsString(X.toString() + " wins!"));
     }
 
     @Test
@@ -80,6 +81,6 @@ public class CommandLineRunnerTest {
     public void playsFourByFourGame() {
         setupWithStringIO("1\n2\n9\n13\n10\n14\n11\n15\n12\n\n");
         runner.play();
-        assertThat(out.toString(), containsString(X + " wins"));
+        assertThat(out.toString(), containsString(X.toString() + " wins"));
     }
 }

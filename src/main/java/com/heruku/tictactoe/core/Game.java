@@ -63,12 +63,8 @@ public class Game {
         return findPlayerByMark(winnerMark);
     }
 
-    private Player findPlayerByMark(String winnerMark) {
-        for (Player player : players) {
-            if (player.getMark().equals(winnerMark))
-                return player;
-        }
-        throw new RuntimeException("Invalid winner mark " + winnerMark);
+    public Board getBoard() {
+        return board;
     }
 
     public boolean hasWinner() {
@@ -83,6 +79,18 @@ public class Game {
         return board.toString();
     }
 
+    private Player findPlayerByMark(String winnerMark) {
+        for (Player player : players) {
+            if (player.getMark().toString().equals(winnerMark))
+                return player;
+        }
+        throw new RuntimeException("Invalid winner mark " + winnerMark);
+    }
+
+    private int getCurrentPlayerMove() {
+        return currentPlayer().getMove(board);
+    }
+
     private void showBoard() {
         io.showBoard(board);
     }
@@ -92,19 +100,11 @@ public class Game {
     }
 
     private void makeMove(int move) {
-        board = board.markSquare(move, currentPlayer().getMark());
+        board = board.markSquare(move, currentPlayer().getMark().toString());
         Collections.rotate(players, 1);
     }
 
     private boolean isValid(int move) {
         return board.isValidMove(move) && !isOver();
-    }
-
-    private int getCurrentPlayerMove() {
-        return currentPlayer().getMove(board);
-    }
-
-    public Board getBoard() {
-        return board;
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FakeIO implements IO {
     private ArrayList<Integer> moves;
-    private String out;
+    private List<String> called = new ArrayList<String>();
 
     public FakeIO(List<Integer> moves) {
         this.moves = new ArrayList<Integer>(moves);
@@ -13,8 +13,8 @@ public class FakeIO implements IO {
 
     public FakeIO() {}
 
-    public String getOut() {
-        return this.out;
+    public List<String> calledMethods() {
+        return this.called;
     }
 
     @Override
@@ -24,26 +24,26 @@ public class FakeIO implements IO {
 
     @Override
     public void showBoard(Board board) {
-        out += "board";
+        called.add("showBoard");
     }
 
     @Override
     public void notifyOfInvalidMove() {
-        this.out += "Invalid move";
+        called.add("notifyOfInvalidMove");
     }
 
     @Override
     public void notifyOfTurn(Player player) {
-        out += player.getMark() + " turn";
+        called.add("notifyOfTurn");
     }
 
     @Override
     public void notifyWinner(Player winner) {
-        out += winner + "wins";
+        called.add("notifyWinner");
     }
 
     @Override
     public void notifyOfDraw() {
-        out += "draw";
+        called.add("notifyOfDraw");
     }
 }

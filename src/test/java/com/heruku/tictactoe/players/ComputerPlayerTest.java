@@ -5,8 +5,8 @@ import com.heruku.tictactoe.core.Player;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.heruku.tictactoe.core.Constants.O;
-import static com.heruku.tictactoe.core.Constants.X;
+import static com.heruku.tictactoe.core.PlayerMark.O;
+import static com.heruku.tictactoe.core.PlayerMark.X;
 import static org.junit.Assert.assertEquals;
 
 public class ComputerPlayerTest {

@@ -1,7 +1,7 @@
 package com.heruku.tictactoe.core;
 
 public interface Player {
-    String getMark();
+    PlayerMark getMark();
 
     int getMove(Board board);
 

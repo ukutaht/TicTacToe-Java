@@ -58,7 +58,7 @@ public class CommandLineIOTest {
         assertThat(out.toString(), containsString("Invalid"));
     }
 
-    @Test
+    @Test()
     public void getInputBadInput() {
         setup("whatever\n\n");
         assertEquals(-1, ui.getMove());

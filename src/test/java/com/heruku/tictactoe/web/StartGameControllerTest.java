@@ -22,7 +22,7 @@ public class StartGameControllerTest {
         io = new FakeIO();
         GameFactory factory = new GameFactory(io);
         repo = new GameRepository();
-        controller = new StartGameController(factory, repo);
+        controller = new StartGameController(factory, repo, new Paths());
         locals = new ModelMap();
     }
 

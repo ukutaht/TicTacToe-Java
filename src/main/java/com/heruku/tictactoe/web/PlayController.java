@@ -14,12 +14,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 class PlayController {
     private final GameRepository gameRepository;
     private final WebIO io;
+    private final Paths paths;
     private Game game;
     private int gameId;
 
-    public PlayController(GameRepository gameRepository, WebIO io) {
+    public PlayController(GameRepository gameRepository, WebIO io, Paths paths) {
         this.gameRepository = gameRepository;
         this.io = io;
+        this.paths = paths;
     }
 
     @RequestMapping(value = "play/{id}", method = GET)
@@ -27,7 +29,7 @@ class PlayController {
         findGame(id);
         buildLocals(locals);
 
-        return "play";
+        return paths.play();
     }
 
     @RequestMapping(value = "/make_move/{id}", method = GET)
@@ -35,12 +37,12 @@ class PlayController {
         findGame(id);
         makeMoveOnGame(move);
 
-        return "redirect:/play/" + id;
+        return paths.redirectToPlay(id);
     }
 
     @ExceptionHandler(GameNotFoundException.class)
     public String gameNotFound() {
-        return "gameNotFound";
+        return paths.gameNotFound();
     }
 
     private void makeMoveOnGame(Integer move) {

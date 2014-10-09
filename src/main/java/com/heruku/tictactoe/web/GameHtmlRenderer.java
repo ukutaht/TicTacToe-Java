@@ -10,10 +10,12 @@ public class GameHtmlRenderer {
     private final Writer out = new StringWriter();
     private final int gameId;
     private final Board board;
+    private final Paths paths;
 
     public GameHtmlRenderer(Board board, int gameId) {
         this.board = board;
         this.gameId = gameId;
+        this.paths = new Paths();
     }
 
     public String render() {
@@ -34,7 +36,7 @@ public class GameHtmlRenderer {
           }
 
             private void renderMarkWithLink(int square) {
-                a().href(makeLink(square));
+                a().href(paths.makeMove(gameId, square));
                 renderMark(square);
                 end();
             }
@@ -44,10 +46,6 @@ public class GameHtmlRenderer {
                 end();
             }
         };
-    }
-
-    private String makeLink(int square) {
-        return String.format("/make_move/%d?move=%d", gameId, square);
     }
 
     private boolean needsLink(int square) {

@@ -15,12 +15,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 class StartGameController {
     private GameFactory gameFactory;
     private GameRepository gameRepository;
+    private Paths paths;
     private Game game;
     private int gameId;
 
-    public StartGameController(GameFactory gameFactory, GameRepository gameRepository) {
+    public StartGameController(GameFactory gameFactory, GameRepository gameRepository, Paths paths) {
         this.gameFactory = gameFactory;
         this.gameRepository = gameRepository;
+        this.paths = paths;
     }
 
     @RequestMapping(value = "/start", method = POST)
@@ -28,12 +30,12 @@ class StartGameController {
         buildGame(gameType);
         storeGame();
 
-        return "redirect:/play/" + gameId;
+        return paths.redirectToPlay(gameId);
     }
 
     @RequestMapping(value = "/", method = GET)
     public String showStartForm() {
-        return "play";
+        return paths.play();
     }
 
     private void buildGame(String gameType) {

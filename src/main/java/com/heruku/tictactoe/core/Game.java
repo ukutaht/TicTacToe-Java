@@ -63,6 +63,11 @@ public class Game {
         return findPlayerByMark(winnerMark);
     }
 
+    public Player playerAt(int square) {
+        String playerMark = board.squareAt(square);
+        return findPlayerByMark(playerMark);
+    }
+
     public Board getBoard() {
         return board;
     }

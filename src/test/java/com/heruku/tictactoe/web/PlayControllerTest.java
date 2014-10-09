@@ -29,7 +29,7 @@ public class PlayControllerTest {
     public void setup() {
         WebIO io = new WebIO();
         repository = new GameRepository();
-        controller = new PlayController(repository, io);
+        controller = new PlayController(repository, io, new Paths());
         locals = new ModelMap();
 
         emptyGame = new GameFactory(io).getDefault();

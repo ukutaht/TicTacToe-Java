@@ -5,83 +5,101 @@ import com.heruku.tictactoe.players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.heruku.tictactoe.core.BoardType.THREE_BY_THREE;
+import static com.heruku.tictactoe.core.GameType.HUMAN_VS_HUMAN;
 import static com.heruku.tictactoe.core.PlayerMark.O;
 import static com.heruku.tictactoe.core.PlayerMark.X;
+import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class GameTest {
 
     public static final int MOVE = 0;
-    private Game game;
+    private Game emptyGame;
     private FakeIO io;
 
     @Before
-    public void setupEmptyGame() {
-       setupGameWithBoard("         ");
+    public void setup() {
+        io = new FakeIO();
+        emptyGame = new GameFactory(io).build(THREE_BY_THREE, HUMAN_VS_HUMAN);
     }
 
-    public void setupGameWithBoard(String boardString) {
-        List<Player> players = new ArrayList<Player>();
-        players.add(new HumanPlayer(X, new FakeIO(Arrays.asList(MOVE))));
-        players.add(new HumanPlayer(O, new FakeIO(Arrays.asList(MOVE))));
+    public Game setupGameWithMoves(List<Integer> moves) {
+        io = new FakeIO(moves);
+        return new GameFactory(io).build(THREE_BY_THREE, HUMAN_VS_HUMAN);
+    }
+
+    public Game setupGameWithBoard(String boardString) {
+        io = new FakeIO();
+        List<Player> players = Arrays.<Player>asList(new HumanPlayer(X, io), new HumanPlayer(O, io));
         Board board = Board.THREE_BY_THREE(boardString);
-        this.io = new FakeIO();
-        this.game = new Game(board, players, io);
+        return new Game(board, players, io);
     }
 
     @Test
     public void initShowsBoardAndTellsTurn() {
-        game.start();
+        emptyGame.start();
         assertIOReceived("showBoard");
         assertIOReceived("notifyOfTurn");
     }
 
     @Test
     public void playMoveMarksSquare() {
+        Game game = setupGameWithMoves(asList(0));
         game.playMove();
-        assertEquals(X.toString(), game.board.squareAt(MOVE));
+
+        assertEquals(X.toString(), game.board.squareAt(0));
     }
 
     @Test
     public void playMoveAdvancesTurn() {
+        Game game = setupGameWithMoves(asList(0));
+
+        assertEquals(X, game.currentPlayer().getMark());
         game.playMove();
         assertEquals(O, game.currentPlayer().getMark());
     }
 
     @Test
     public void playMoveDoesNotMarkSquareIfInvalid() {
+        Game game = setupGameWithMoves(asList(0, 0));
         game.playMove();
+
+        assertEquals(X, game.playerAt(0).getMark());
         game.playMove();
-        assertEquals(X.toString(), game.board.squareAt(MOVE));
+        assertEquals(X, game.playerAt(0).getMark());
     }
 
     @Test
-    public void showsBoard() {
+    public void showsBoardWhenPlayingMove() {
+        Game game = setupGameWithMoves(asList(0));
         game.playMove();
+
         assertIOReceived("showBoard");
     }
 
     @Test
-    public void notifiesIOofTheTurn() {
-        game.playMove();
+    public void notifiesIOofTheTurnWhenNoWinnerOrDraw() {
+        emptyGame.notifyIO();
         assertIOReceived("notifyOfTurn");
     }
 
     @Test
     public void notifiesIOThatGameHasWinner() {
-        setupGameWithBoard(" XX O  O ");
-        game.playMove();
+        Game game = setupGameWithBoard("XXX O  O ");
+        game.notifyIO();
+
         assertIOReceived("notifyWinner");
     }
 
     @Test
     public void notifiesIOThatGameHasdraw() {
-        setupGameWithBoard(" OXXOXOXO");
-        game.playMove();
+        Game game = setupGameWithBoard("XOXXOXOXO");
+        game.notifyIO();
+
         assertIOReceived("notifyOfDraw");
     }
 
@@ -126,17 +144,17 @@ public class GameTest {
     }
 
     private void assertIsNotOver(String boardString) {
-        setupGameWithBoard(boardString);
+        Game game = setupGameWithBoard(boardString);
         assertFalse(game.isOver());
     }
 
     private void assertIsOver(String boardString) {
-        setupGameWithBoard(boardString);
+        Game game = setupGameWithBoard(boardString);
         assertTrue(game.isOver());
     }
 
     private void assertIsWinner(String boardString, PlayerMark expectedWinner) {
-        setupGameWithBoard(boardString);
+        Game game = setupGameWithBoard(boardString);
         assertTrue(game.hasWinner());
         assertEquals(expectedWinner, game.winner().getMark());
     }

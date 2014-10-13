@@ -1,7 +1,8 @@
 package com.heruku.tictactoe.commandline;
 
-import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.FourByFourBoard;
 import com.heruku.tictactoe.core.Move;
+import com.heruku.tictactoe.core.ThreeByThreeBoard;
 import org.junit.Test;
 
 import java.io.Reader;
@@ -28,7 +29,7 @@ public class CommandLineIOTest {
     @Test
     public void showsBoard() {
         setup("");
-        ui.printBoard(Board.THREE_BY_THREE(" XXO O XX"));
+        ui.printBoard(new ThreeByThreeBoard(" XXO O XX"));
 
         assertEquals("\n\n 1 | X | X \n"
                    + "---+---+---\n"
@@ -40,7 +41,7 @@ public class CommandLineIOTest {
     @Test
     public void showsFourByFourBoard() {
         setup("");
-        ui.printBoard(Board.FOUR_BY_FOUR(" XXO O XXO     X"));
+        ui.printBoard(new FourByFourBoard(" XXO O XXO     X"));
 
         assertEquals("\n\n 1 | X | X | O \n"
                    + "---+---+---+---\n"

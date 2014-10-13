@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/java/com/heruku/tictactoe/web/WEB-INF/TicTacToeWeb-servlet.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/TicTacToeWeb-servlet.xml"})
 public class ApplicationBootstrapTest extends AbstractJUnit4SpringContextTests {
 
     @Test

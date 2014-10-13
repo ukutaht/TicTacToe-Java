@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.002" errors="0" skipped="0" tests="19" name="com.heruku.tictactoe.core.BoardTest">
+<testsuite tests="20" failures="0" name="com.heruku.tictactoe.core.BoardTest" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
-    <property name="java.vm.version" value="20.65-b04-462"/>
-    <property name="awt.nativeDoubleBuffering" value="true"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.20-b23"/>
     <property name="gopherProxySet" value="false"/>
-    <property name="mrj.build" value="11M4609"/>
-    <property name="java.vm.vendor" value="Apple Inc."/>
-    <property name="java.vendor.url" value="http://www.apple.com/"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
@@ -18,70 +16,70 @@
     <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="/Users/ukutaht/Desktop/code/TicTacToe"/>
-    <property name="java.runtime.version" value="1.6.0_65-b14-462-11M4609"/>
-    <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
+    <property name="java.runtime.version" value="1.8.0_20-b26"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
     <property name="java.io.tmpdir" value="/var/folders/qs/zv056_h90nqdzhr668qzrjd80000gn/T/"/>
     <property name="line.separator" value="
 "/>
-    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
     <property name="classworlds.conf" value="/usr/local/Cellar/maven/3.2.1/libexec/bin/m2.conf"/>
-    <property name="sun.jnu.encoding" value="MacRoman"/>
-    <property name="java.library.path" value=".:/Users/ukutaht/Library/Java/Extensions:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/ukutaht/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="java.class.version" value="50.0"/>
+    <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.9.2"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="user.home" value="/Users/ukutaht"/>
     <property name="user.timezone" value="Europe/London"/>
-    <property name="java.awt.printerjob" value="apple.awt.CPrinterJob"/>
-    <property name="java.specification.version" value="1.6"/>
-    <property name="file.encoding" value="MacRoman"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="ukutaht"/>
     <property name="java.class.path" value="/usr/local/Cellar/maven/3.2.1/libexec/boot/plexus-classworlds-2.5.1.jar"/>
     <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
-    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
-    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install jetty:run"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
-    <property name="awt.toolkit" value="apple.awt.CToolkit"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.6.0_65"/>
-    <property name="java.ext.dirs" value="/Users/ukutaht/Library/Java/Extensions:/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext"/>
-    <property name="sun.boot.class.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar"/>
-    <property name="java.vendor" value="Apple Inc."/>
+    <property name="java.version" value="1.8.0_20"/>
+    <property name="java.ext.dirs" value="/Users/ukutaht/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="/usr/local/Cellar/maven/3.2.1/libexec"/>
     <property name="file.separator" value="/"/>
-    <property name="java.vendor.url.bug" value="http://bugreport.apple.com/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="mrj.version" value="1070.1.6.0_65-462"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="negativeMoveIsInvalid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinner"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinnerOnFourByFour"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isFull"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="tooLargeMoveIndexIsInvalid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinner"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isEmptySquare"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValidOnFourByFour"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinnerOnFourByFour"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="markSquare"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="noMovesValid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="someMovesValid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="playedSquareIsInvalid"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="diagonalWinnerOnFourByFour"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isNotEmptySquare"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="isNotFull"/>
-  <testcase time="0" classname="com.heruku.tictactoe.core.BoardTest" name="validMoveOnFourByFour"/>
-  <testcase time="0.001" classname="com.heruku.tictactoe.core.BoardTest" name="isDiagonalWinner"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="negativeMoveIsInvalid" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinner" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinnerOnFourByFour" time="0.001"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isFull" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValid" time="0.001"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="markSquareWithMove" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="tooLargeMoveIndexIsInvalid" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinner" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isEmptySquare" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="validMoveIsValid" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValidOnFourByFour" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinnerOnFourByFour" time="0.001"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="noMovesValid" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="someMovesValid" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="playedSquareIsInvalid" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="diagonalWinnerOnFourByFour" time="0.001"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isNotEmptySquare" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isNotFull" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="validMoveOnFourByFour" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isDiagonalWinner" time="0"/>
 </testsuite>

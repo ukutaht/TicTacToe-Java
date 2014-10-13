@@ -15,14 +15,14 @@ public class BoardTest {
 
     private void setupBoard(String boardString) {
         if (boardString.length() == 9)
-            this.board = Board.THREE_BY_THREE(boardString);
+            this.board = new ThreeByThreeBoard(boardString);
         else
-            this.board = Board.FOUR_BY_FOUR(boardString);
+            this.board = new FourByFourBoard(boardString);
     }
 
     @Before
     public void setUp() {
-        this.board = Board.THREE_BY_THREE();
+        this.board = new ThreeByThreeBoard();
     }
 
 
@@ -57,7 +57,7 @@ public class BoardTest {
 
     @Test
     public void validMoveOnFourByFour() {
-        board = Board.FOUR_BY_FOUR();
+        board = new FourByFourBoard();
         Move move = new Move(15);
 
         assertTrue(board.isValidMove(move));
@@ -78,7 +78,7 @@ public class BoardTest {
 
     @Test
     public void allMovesValidOnFourByFour() {
-        board = Board.FOUR_BY_FOUR();
+        board = new FourByFourBoard();
 
         assertEquals(makeMoves(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), board.validMoves());
     }
@@ -101,7 +101,7 @@ public class BoardTest {
 
     @Test
     public void isEmptySquare() {
-        board = Board.THREE_BY_THREE();
+        board = new ThreeByThreeBoard();
         assertTrue(board.isEmptySquare(0));
     }
 

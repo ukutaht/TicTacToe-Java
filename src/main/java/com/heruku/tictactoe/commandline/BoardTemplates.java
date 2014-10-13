@@ -1,9 +1,11 @@
 package com.heruku.tictactoe.commandline;
 
+import com.heruku.tictactoe.core.Board;
+
 class BoardTemplates {
 
     private static final String THREE_BY_THREE =
-                    " 1 | 2 | 3 \n"
+                     " 1 | 2 | 3 \n"
                     + "---+---+---\n"
                     + " 4 | 5 | 6 \n"
                     + "---+---+---\n"
@@ -18,11 +20,11 @@ class BoardTemplates {
                     + "---+---+---+---\n"
                     + " 13| 14| 15| 16\n\n";
 
-    public static String forSize(int size) {
-        switch (size) {
+    public static String getTemplateForBoard(Board board) {
+        switch (board.size()) {
             case 9:  return THREE_BY_THREE;
             case 16: return FOUR_BY_FOUR;
-            default: throw new RuntimeException("Cannot show board of size " + size);
+            default: throw new RuntimeException("Cannot show board of size " + board.size());
         }
     }
 }

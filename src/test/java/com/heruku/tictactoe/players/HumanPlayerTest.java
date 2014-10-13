@@ -1,9 +1,6 @@
 package com.heruku.tictactoe.players;
 
-import com.heruku.tictactoe.core.Board;
-import com.heruku.tictactoe.core.FakeIO;
-import com.heruku.tictactoe.core.IO;
-import com.heruku.tictactoe.core.Move;
+import com.heruku.tictactoe.core.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +18,7 @@ public class HumanPlayerTest {
     public void setup() {
         IO io = new FakeIO(asList(MOVE));
         player = new HumanPlayer(X, io);
-        board = Board.THREE_BY_THREE();
+        board = new ThreeByThreeBoard();
     }
 
     @Test

@@ -24,10 +24,9 @@
               <div class="form-container">
                 <form id="start-game-form" class='basic-grey' action='/start' method="POST">
                   <select name="game_type">
-                    <option value='HUMAN_VS_HUMAN'>Human vs Human</option>
-                    <option value='HUMAN_VS_COMPUTER'>Human vs Computer</option>
-                    <option value='COMPUTER_VS_HUMAN'>Computer vs Human</option>
-                    <option value='COMPUTER_VS_COMPUTER'>Computer vs Computer</option>
+                    <c:forEach var="gameType" items="${gameTypes}">
+                      <option value="${gameType}">${gameType.getName()}</option>
+                    </c:forEach>
                   </select>
                   <input type="submit" value="Start" class="button">
                 </form>

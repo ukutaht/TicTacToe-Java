@@ -95,7 +95,7 @@ public class CommandLineIO implements IO {
     }
 
     private String buildBoardOutput(Board board) {
-        String boardOutput = BoardTemplates.forSize(board.size());
+        String boardOutput = BoardTemplates.getTemplateForBoard(board);
         for (int i = 0; i < board.size(); i++) {
             if (!board.isEmptySquare(i))
                 boardOutput = fillSquare(boardOutput, i, board.squareAt(i));

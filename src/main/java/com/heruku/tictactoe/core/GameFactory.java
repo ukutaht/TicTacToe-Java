@@ -44,9 +44,9 @@ public class GameFactory {
     private Board boardFor(BoardType boardType) {
         switch (boardType) {
             case THREE_BY_THREE:
-                return Board.THREE_BY_THREE();
+                return new ThreeByThreeBoard();
             case FOUR_BY_FOUR:
-                return Board.FOUR_BY_FOUR();
+                return new FourByFourBoard();
             default:
                 throw new RuntimeException("Unexpected board type");
         }

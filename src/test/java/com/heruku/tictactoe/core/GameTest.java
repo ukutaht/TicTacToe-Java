@@ -40,7 +40,7 @@ public class GameTest {
     public Game setupGameWithBoard(String boardString) {
         io = new FakeIO();
         List<Player> players = Arrays.<Player>asList(new HumanPlayer(X, io), new HumanPlayer(O, io));
-        Board board = Board.THREE_BY_THREE(boardString);
+        Board board = new ThreeByThreeBoard(boardString);
         return new Game(board, players, io);
     }
 

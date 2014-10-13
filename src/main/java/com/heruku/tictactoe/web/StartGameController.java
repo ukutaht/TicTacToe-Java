@@ -4,6 +4,7 @@ import com.heruku.tictactoe.core.Game;
 import com.heruku.tictactoe.core.GameFactory;
 import com.heruku.tictactoe.core.GameType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,7 +35,8 @@ class StartGameController {
     }
 
     @RequestMapping(value = "/", method = GET)
-    public String showStartForm() {
+    public String showStartForm(ModelMap locals) {
+        locals.addAttribute("gameTypes", GameType.values());
         return paths.play();
     }
 

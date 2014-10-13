@@ -37,7 +37,7 @@ public class PlayControllerTest {
 
         computerVsHumanGame = new GameFactory(new FakeIO()).build(BoardType.THREE_BY_THREE, GameType.COMPUTER_VS_HUMAN);
         List<Player> players = Arrays.<Player>asList(new HumanPlayer(X, new FakeIO()));
-        XWinsGame = new Game(Board.THREE_BY_THREE("XXX   OOO"), players, new FakeIO());
+        XWinsGame = new Game(new ThreeByThreeBoard("XXX   OOO"), players, new FakeIO());
     }
 
     @Test

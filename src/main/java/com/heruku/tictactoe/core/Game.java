@@ -9,7 +9,7 @@ public class Game {
     List<Player> players;
 
     public Game(List<Player> players, IO io) {
-        this.board = Board.THREE_BY_THREE();
+        this.board = new ThreeByThreeBoard();
         this.players = players;
         this.io = io;
     }
@@ -43,7 +43,7 @@ public class Game {
     }
 
     private void markMoveIfValid(Move move) {
-        if (move.isLegal() && isValid(move)) {
+        if (isValid(move)) {
             makeMove(move);
         } else {
             notifyOfInvalidMove();

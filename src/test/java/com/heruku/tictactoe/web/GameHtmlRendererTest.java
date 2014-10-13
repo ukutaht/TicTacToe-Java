@@ -2,6 +2,7 @@ package com.heruku.tictactoe.web;
 
 import com.heruku.tictactoe.core.Board;
 import com.heruku.tictactoe.core.Move;
+import com.heruku.tictactoe.core.ThreeByThreeBoard;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.StringUtils;
@@ -19,7 +20,7 @@ public class GameHtmlRendererTest {
 
     @Before
     public void setup() {
-        board = Board.THREE_BY_THREE();
+        board = new ThreeByThreeBoard();
         renderer = new GameHtmlRenderer(board, GAME_ID);
     }
 
@@ -47,7 +48,7 @@ public class GameHtmlRendererTest {
 
     @Test
     public void doesNotAddLinksWhenGameIsOver() {
-        board = Board.THREE_BY_THREE("XXX      ");
+        board = new ThreeByThreeBoard("XXX      ");
         renderer = new GameHtmlRenderer(board, GAME_ID);
 
         int links = StringUtils.countOccurrencesOf(renderer.render(), "<a href");

@@ -1,7 +1,7 @@
 package com.heruku.tictactoe.web;
 
-import com.heruku.tictactoe.core.Board;
 import com.heruku.tictactoe.core.Move;
+import com.heruku.tictactoe.core.ThreeByThreeBoard;
 import com.heruku.tictactoe.players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +51,7 @@ public class WebIOTest {
 
     @Test
     public void rendersBoardHtml() {
-        io.showBoard(Board.THREE_BY_THREE("XXX      "));
+        io.showBoard(new ThreeByThreeBoard("XXX      "));
 
         assertThat(io.boardMarkup(1), containsString("div"));
     }

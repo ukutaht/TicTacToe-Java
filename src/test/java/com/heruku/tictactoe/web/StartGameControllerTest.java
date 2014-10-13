@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.ui.ModelMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class StartGameControllerTest {
@@ -57,8 +58,15 @@ public class StartGameControllerTest {
 
     @Test
     public void rendersPlayAtRoot() {
-        String template = controller.showStartForm();
+        String template = controller.showStartForm(locals);
 
         assertEquals("play", template);
+    }
+
+    @Test
+    public void addsGametypesToLocals() {
+        String template = controller.showStartForm(locals);
+
+        assertNotNull(locals.get("gameTypes"));
     }
 }

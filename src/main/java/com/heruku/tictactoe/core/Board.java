@@ -3,36 +3,22 @@ package com.heruku.tictactoe.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+public abstract class Board {
     private final String squares;
-    private final int[][] winningCombinations;
 
-    public Board(String squares, int[][] winningCombinations) {
+    Board(String squares) {
         this.squares = squares;
-        this.winningCombinations = winningCombinations;
     }
 
-    public static Board THREE_BY_THREE() {
-        return new Board("         ", WinningCombinations.THREE_BY_THREE);
-    }
+    public abstract Board makeBoard(String squares);
 
-    public static Board THREE_BY_THREE(String squares) {
-        return new Board(squares, WinningCombinations.THREE_BY_THREE);
-    }
-
-    public static Board FOUR_BY_FOUR() {
-        return new Board("                ", WinningCombinations.FOUR_BY_FOUR);
-    }
-
-    public static Board FOUR_BY_FOUR(String squares) {
-        return new Board(squares, WinningCombinations.FOUR_BY_FOUR);
-    }
+    public abstract int[][] getWinningCombinations();
 
     public Board markSquare(Move move, String mark) {
         StringBuilder newString = new StringBuilder(squares);
         newString.setCharAt(move.getValue(), mark.toString().charAt(0));
 
-        return new Board(newString.toString(), winningCombinations);
+        return makeBoard(newString.toString());
     }
 
     public String squareAt(int index) {
@@ -48,19 +34,15 @@ public class Board {
     }
 
     public boolean isValidMove(Move move) {
-        return isValidIndex(move.getValue());
+        return move.isLegal() && validMoves().contains(move);
     }
 
     public boolean isFull() {
-        for (int i = 0; i < squares.length(); i++) {
-            if (isEmptySquare(i))
-                return false;
-        }
-        return true;
+        return !squares.contains(" ");
     }
 
     public String winner() {
-        for (int[] combination : winningCombinations) {
+        for (int[] combination : getWinningCombinations()) {
             if (isWinning(combination)) {
                 return squareAt(combination[0]);
             }
@@ -73,7 +55,7 @@ public class Board {
 
         for (int i = 0; i < squares.length(); i++) {
             Move move = new Move(i);
-            if (isValidMove(move)) {
+            if (isEmptySquare(move.getValue())) {
                 validMoves.add(move);
             }
         }
@@ -111,11 +93,5 @@ public class Board {
 
     private boolean isEmpty(String square) {
         return square.equals(" ");
-    }
-
-    private boolean isValidIndex(int index) {
-        if (index < 0 || index >= squares.length())
-            return false;
-        return isEmptySquare(index);
     }
 }

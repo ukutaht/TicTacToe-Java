@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.players;
 
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Move;
 import com.heruku.tictactoe.core.Player;
 import com.heruku.tictactoe.core.PlayerMark;
 
@@ -25,16 +26,16 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public int getMove(Board board) {
-        List<Integer> validMoves = board.validMoves();
+    public Move getTheMove(Board board) {
+        List<Move> validMoves = board.validMoves();
 
         if(validMoves.size() > 11)
             return sample(validMoves);
 
         int bestScore = -10;
-        int bestMove = -10;
+        Move bestMove = new Move(-10);
 
-        for (Integer move : validMoves) {
+        for (Move move : validMoves) {
             int score = -negamax(board.markSquare(move, mark.toString()), mark.opponent(), -10, 10);
             if (score > bestScore) {
                 bestScore = score;
@@ -45,7 +46,8 @@ public class ComputerPlayer implements Player {
         return bestMove;
     }
 
-    private int sample(List<Integer> validMoves) {
+
+    private Move sample(List<Move> validMoves) {
         Random random = new Random();
         int randomIndex = random.nextInt(validMoves.size());
         return validMoves.get(randomIndex);
@@ -57,7 +59,7 @@ public class ComputerPlayer implements Player {
 
         int bestScore = -10;
 
-        for (Integer move : board.validMoves()) {
+        for (Move move : board.validMoves()) {
             int score = -negamax(board.markSquare(move, mark.toString()), mark.opponent(), -beta, -alpha);
             bestScore = Math.max(score, bestScore);
             alpha = Math.max(bestScore, alpha);

@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.web;
 
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Move;
 import com.heruku.tictactoe.players.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +22,10 @@ public class WebIOTest {
 
     @Test
     public void setsAndGetsMove() {
-        io.setMove(11);
+        Move move = new Move(11);
+        io.setMove(move);
 
-        assertEquals(11, io.getMove());
+        assertEquals(move, io.getMove());
     }
 
     @Test

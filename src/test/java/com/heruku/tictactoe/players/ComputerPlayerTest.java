@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.players;
 
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Move;
 import com.heruku.tictactoe.core.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,9 @@ public class ComputerPlayerTest {
         Board board = Board.THREE_BY_THREE("OO " +
                                 "XX " +
                                 " X ");
-        assertEquals(2, computer.getMove(board));
+        Move expected = new Move(2);
+
+        assertEquals(expected, computer.getTheMove(board));
     }
 
     @Test
@@ -30,7 +33,8 @@ public class ComputerPlayerTest {
         Board board = Board.THREE_BY_THREE("XX " +
                                            "   " +
                                            "O  ");
-        assertEquals(2, computer.getMove(board));
+        Move expected = new Move(2);
+        assertEquals(expected, computer.getTheMove(board));
     }
 
     @Test
@@ -39,6 +43,7 @@ public class ComputerPlayerTest {
         Board board = Board.THREE_BY_THREE("XXO" +
                                            " O " +
                                            "   ");
-        assertEquals(6, computer.getMove(board));
+        Move expected = new Move(6);
+        assertEquals(expected, computer.getTheMove(board));
     }
 }

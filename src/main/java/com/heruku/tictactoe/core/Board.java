@@ -28,9 +28,10 @@ public class Board {
         return new Board(squares, WinningCombinations.FOUR_BY_FOUR);
     }
 
-    public Board markSquare(int index, String mark) {
+    public Board markSquare(Move move, String mark) {
         StringBuilder newString = new StringBuilder(squares);
-        newString.setCharAt(index, mark.toString().charAt(0));
+        newString.setCharAt(move.getValue(), mark.toString().charAt(0));
+
         return new Board(newString.toString(), winningCombinations);
     }
 
@@ -46,10 +47,8 @@ public class Board {
         return winner() != null;
     }
 
-    public boolean isValidMove(int index) {
-        if (index < 0 || index >= squares.length())
-            return false;
-        return isEmptySquare(index);
+    public boolean isValidMove(Move move) {
+        return isValidIndex(move.getValue());
     }
 
     public boolean isFull() {
@@ -69,17 +68,28 @@ public class Board {
         return null;
     }
 
-    public List<Integer> validMoves() {
-        List<Integer> validMoves = new ArrayList<Integer>();
+    public List<Move> validMoves() {
+        List<Move> validMoves = new ArrayList<Move>();
+
         for (int i = 0; i < squares.length(); i++) {
-            if (isValidMove(i))
-                validMoves.add(i);
+            Move move = new Move(i);
+            if (isValidMove(move)) {
+                validMoves.add(move);
+            }
         }
         return validMoves;
     }
 
     public String toString() {
         return squares;
+    }
+
+    public boolean isOver() {
+        return hasWinner() || hasDraw();
+    }
+
+    public boolean hasDraw() {
+        return isFull() && !hasWinner();
     }
 
     public int size() {
@@ -103,11 +113,9 @@ public class Board {
         return square.equals(" ");
     }
 
-    public boolean isOver() {
-        return hasWinner() || hasDraw();
-    }
-
-    public boolean hasDraw() {
-        return isFull() && !hasWinner();
+    private boolean isValidIndex(int index) {
+        if (index < 0 || index >= squares.length())
+            return false;
+        return isEmptySquare(index);
     }
 }

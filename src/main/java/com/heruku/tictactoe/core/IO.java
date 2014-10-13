@@ -2,7 +2,7 @@ package com.heruku.tictactoe.core;
 
 public interface IO {
 
-    int getMove();
+    Move getMove();
 
     void showBoard(Board board);
 

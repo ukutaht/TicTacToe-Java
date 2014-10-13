@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.web;
 
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Move;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.StringUtils;
@@ -36,8 +37,9 @@ public class GameHtmlRendererTest {
 
     @Test
     public void doesNotAddLinkForPlayedSquares() {
-        board = board.markSquare(0, X.toString());
-        renderer = new GameHtmlRenderer(board, 0);
+        Move move = new Move(0);
+        board = board.markSquare(move, X.toString());
+        renderer = new GameHtmlRenderer(board, GAME_ID);
 
         int links = StringUtils.countOccurrencesOf(renderer.render(), "<a href");
         assertEquals(8, links);
@@ -46,7 +48,7 @@ public class GameHtmlRendererTest {
     @Test
     public void doesNotAddLinksWhenGameIsOver() {
         board = Board.THREE_BY_THREE("XXX      ");
-        renderer = new GameHtmlRenderer(board, 0);
+        renderer = new GameHtmlRenderer(board, GAME_ID);
 
         int links = StringUtils.countOccurrencesOf(renderer.render(), "<a href");
         assertEquals(0, links);

@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.web;
 
 import com.heruku.tictactoe.core.Game;
+import com.heruku.tictactoe.core.Move;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -46,7 +47,7 @@ class PlayController {
     }
 
     private void makeMoveOnGame(Integer move) {
-        io.setMove(move);
+        io.setMove(new Move(move));
         game.playMove();
     }
 

@@ -1,6 +1,7 @@
 package com.heruku.tictactoe.commandline;
 
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Move;
 import org.junit.Test;
 
 import java.io.Reader;
@@ -58,13 +59,37 @@ public class CommandLineIOTest {
         assertThat(out.toString(), containsString("Invalid"));
     }
 
-    @Test()
-    public void getInputBadInput() {
-        setup("whatever\n\n");
-        assertEquals(-1, ui.getMove());
-        assertEquals(-1, ui.getMove());
+    @Test
+    public void getMoveDigitsAreLegal() {
+        setup("4\n");
+        Move move = ui.getMove();
+
+        assertTrue(move.isLegal());
     }
 
+    @Test
+    public void getMoveConvertsToZeroIndexed() {
+        setup("4\n");
+        Move move = ui.getMove();
+
+        assertEquals(3, move.getValue());
+    }
+
+    @Test
+    public void getMoveNonDigitsAreIllegal() {
+        setup("watman\n");
+        Move move = ui.getMove();
+
+        assertFalse(move.isLegal());
+    }
+
+    @Test
+    public void getMoveEmptyIsIllegal() {
+        setup("\n");
+        Move move = ui.getMove();
+
+        assertFalse(move.isLegal());
+    }
 
     @Test
     public void shouldPlayAgainTrue() {

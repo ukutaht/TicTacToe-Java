@@ -32,6 +32,11 @@ public class GameTest {
         return new GameFactory(io).build(THREE_BY_THREE, HUMAN_VS_HUMAN);
     }
 
+    private Game setupGameWithMoves(Move...moves) {
+        io = new FakeIO(moves);
+        return new GameFactory(io).build(THREE_BY_THREE, HUMAN_VS_HUMAN);
+    }
+
     public Game setupGameWithBoard(String boardString) {
         io = new FakeIO();
         List<Player> players = Arrays.<Player>asList(new HumanPlayer(X, io), new HumanPlayer(O, io));
@@ -66,6 +71,16 @@ public class GameTest {
     @Test
     public void playMoveDoesNotMarkSquareIfInvalid() {
         Game game = setupGameWithMoves(asList(0, 0));
+        game.playMove();
+
+        assertEquals(X, game.playerAt(0).getMark());
+        game.playMove();
+        assertEquals(X, game.playerAt(0).getMark());
+    }
+
+    @Test
+    public void playMoveDoesNotMarkSquareIfMoveIsIllegal() {
+        Game game = setupGameWithMoves(new Move(0), Move.illegal());
         game.playMove();
 
         assertEquals(X, game.playerAt(0).getMark());

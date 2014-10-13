@@ -3,10 +3,10 @@ package com.heruku.tictactoe.core;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.heruku.tictactoe.core.PlayerMark.*;
+import static com.heruku.tictactoe.core.PlayerMark.X;
 import static org.junit.Assert.*;
 
 public class BoardTest {
@@ -25,56 +25,77 @@ public class BoardTest {
         this.board = Board.THREE_BY_THREE();
     }
 
+
     @Test
-    public void markSquare() {
-        Board newBoard = board.markSquare(0, X.toString());
+    public void markSquareWithMove() {
+        Move move = new Move(0);
+        Board newBoard = board.markSquare(move, X.toString());
+
         assertEquals("X", newBoard.squareAt(0));
     }
 
     @Test
+    public void validMoveIsValid() {
+        Move move = new Move(4);
+
+        assertTrue(board.isValidMove(move));
+    }
+
+    @Test
     public void negativeMoveIsInvalid() {
-        assertFalse(board.isValidMove(-1));
+        Move move = new Move(-1);
+
+        assertFalse(board.isValidMove(move));
     }
 
     @Test
     public void tooLargeMoveIndexIsInvalid() {
-        assertFalse(board.isValidMove(9));
+        Move move = new Move(9);
+
+        assertFalse(board.isValidMove(move));
     }
 
     @Test
     public void validMoveOnFourByFour() {
         board = Board.FOUR_BY_FOUR();
-        assertTrue(board.isValidMove(15));
+        Move move = new Move(15);
+
+        assertTrue(board.isValidMove(move));
     }
 
     @Test
     public void playedSquareIsInvalid() {
-        Board newBoard = board.markSquare(0, X.toString());
-        assertFalse(newBoard.isValidMove(0));
+        Move move = new Move(0);
+        Board newBoard = board.markSquare(move, X.toString());
+
+        assertFalse(newBoard.isValidMove(move));
     }
 
     @Test
     public void allMovesValid() {
-        assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8), board.validMoves());
+        assertEquals(makeMoves(0, 1, 2, 3, 4, 5, 6, 7, 8), board.validMoves());
     }
 
     @Test
     public void allMovesValidOnFourByFour() {
         board = Board.FOUR_BY_FOUR();
-        assertEquals(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), board.validMoves());
+
+        assertEquals(makeMoves(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), board.validMoves());
     }
 
     @Test
     public void someMovesValid() {
         setupBoard("X O      ");
-        List<Integer> validMoves = board.validMoves();
-        assertEquals(Arrays.asList(1, 3, 4, 5, 6, 7, 8), validMoves);
+        List<Move> validMoves = board.validMoves();
+
+        assertEquals(makeMoves(1, 3, 4, 5, 6, 7, 8), validMoves);
     }
 
     @Test
     public void noMovesValid() {
         setupBoard("XXOXOOXXO");
-        List<Integer> validMoves = board.validMoves();
+        List<Move> validMoves = board.validMoves();
+
         assertTrue(validMoves.isEmpty());
     }
 
@@ -149,5 +170,14 @@ public class BoardTest {
         setupBoard(boardString);
         assertTrue(board.hasWinner());
         assertEquals(expectedWinner, board.winner());
+    }
+
+    private List<Move> makeMoves(int... moves) {
+        List<Move> moveList = new ArrayList<Move>();
+
+        for (int i = 0; i < moves.length; i++) {
+            moveList.add(new Move(moves[i]));
+        }
+        return moveList;
     }
 }

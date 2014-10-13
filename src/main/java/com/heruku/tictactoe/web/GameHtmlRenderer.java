@@ -2,6 +2,7 @@ package com.heruku.tictactoe.web;
 
 import com.googlecode.jatl.Html;
 import com.heruku.tictactoe.core.Board;
+import com.heruku.tictactoe.core.Move;
 
 import java.io.StringWriter;
 import java.io.Writer;
@@ -49,6 +50,6 @@ public class GameHtmlRenderer {
     }
 
     private boolean needsLink(int square) {
-        return board.isValidMove(square) &&!board.isOver();
+        return board.isValidMove(new Move(square)) &&!board.isOver();
     }
 }

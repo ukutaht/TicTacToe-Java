@@ -3,11 +3,11 @@ package com.heruku.tictactoe.web;
 import com.heruku.tictactoe.core.*;
 
 public class WebIO implements IO {
-    private Integer move;
+    private Move move;
     private String notification;
     private Board board;
 
-    public void setMove(Integer move) {
+    public void setMove(Move move) {
         this.move = move;
     }
 
@@ -20,7 +20,7 @@ public class WebIO implements IO {
     }
 
     @Override
-    public int getMove() {
+    public Move getMove() {
         return move;
     }
 

@@ -91,9 +91,10 @@ public class PlayControllerTest {
     @Test
     public void makesMove() {
         int id = repository.store(emptyGame);
-        controller.makeMove(id, 0);
+        Move move = new Move(0);
+        controller.makeMove(id, move.getValue());
 
-        assertFalse(emptyGame.getBoard().isValidMove(0));
+        assertFalse(emptyGame.getBoard().isValidMove(move));
     }
 
     @Test

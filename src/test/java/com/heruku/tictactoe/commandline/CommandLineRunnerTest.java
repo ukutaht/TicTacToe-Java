@@ -57,6 +57,13 @@ public class CommandLineRunnerTest {
     }
 
     @Test
+    public void notifiesOfIllegalInputMOve() {
+        setupWithStringIO("1\n1\n1\n1\n9\n2\n8\n4\n7\n");
+        runner.play();
+        assertThat(out.toString(), containsString("Invalid"));
+    }
+
+    @Test
     public void winnerGetsPrinted() {
         setupFakeHumanGame("9\n2\n8\n4\n7\n");
         runner.play();

@@ -49,11 +49,11 @@ public class CommandLineIO implements IO {
     }
 
     @Override
-    public int getMove() {
+    public Move getMove() {
         String input = readLine();
-        if (!input.matches("\\d+"))
-            return -1;
-        return toZeroIndexedInt(input);
+        if (!isDigit(input))
+            return Move.illegal();
+        return new Move(toZeroIndexedInt(input));
     }
 
     public boolean shouldPlayAgain() {
@@ -131,6 +131,10 @@ public class CommandLineIO implements IO {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private boolean isDigit(String input) {
+        return input.matches("\\d+");
     }
 
     private int toZeroIndexedInt(String line) {

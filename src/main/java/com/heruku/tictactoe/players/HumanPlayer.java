@@ -1,9 +1,6 @@
 package com.heruku.tictactoe.players;
 
-import com.heruku.tictactoe.core.Board;
-import com.heruku.tictactoe.core.IO;
-import com.heruku.tictactoe.core.Player;
-import com.heruku.tictactoe.core.PlayerMark;
+import com.heruku.tictactoe.core.*;
 
 public class HumanPlayer implements Player {
     private final PlayerMark mark;
@@ -20,10 +17,9 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public int getMove(Board board) {
+    public Move getTheMove(Board board) {
         return io.getMove();
     }
-
 
     @Override
     public boolean isComputer() {

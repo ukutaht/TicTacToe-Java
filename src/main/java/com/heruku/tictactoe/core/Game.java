@@ -26,7 +26,7 @@ public class Game {
     }
 
     public void playMove() {
-        int move = getCurrentPlayerMove();
+        Move move = getCurrentPlayerMove();
         markMoveIfValid(move);
         showBoard();
         notifyIO();
@@ -42,8 +42,8 @@ public class Game {
         }
     }
 
-    private void markMoveIfValid(int move) {
-        if (isValid(move)) {
+    private void markMoveIfValid(Move move) {
+        if (move.isLegal() && isValid(move)) {
             makeMove(move);
         } else {
             notifyOfInvalidMove();
@@ -92,8 +92,8 @@ public class Game {
         throw new RuntimeException("Invalid winner mark " + winnerMark);
     }
 
-    private int getCurrentPlayerMove() {
-        return currentPlayer().getMove(board);
+    private Move getCurrentPlayerMove() {
+        return currentPlayer().getTheMove(board);
     }
 
     private void showBoard() {
@@ -104,12 +104,12 @@ public class Game {
         io.notifyOfInvalidMove();
     }
 
-    private void makeMove(int move) {
+    private void makeMove(Move move) {
         board = board.markSquare(move, currentPlayer().getMark().toString());
         Collections.rotate(players, 1);
     }
 
-    private boolean isValid(int move) {
+    private boolean isValid(Move move) {
         return board.isValidMove(move) && !isOver();
     }
 }

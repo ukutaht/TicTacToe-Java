@@ -3,22 +3,36 @@ package com.heruku.tictactoe.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Arrays.asList;
+
 public class FakeIO implements IO {
-    private ArrayList<Integer> moves;
+    private List<Move> moves;
     private List<String> called = new ArrayList<String>();
 
     public FakeIO(List<Integer> moves) {
-        this.moves = new ArrayList<Integer>(moves);
+        this(convertToMoves(moves));
+    }
+
+    private static Move[] convertToMoves(List<Integer> moves) {
+        Move [] arrayOfMoves = new Move[moves.size()];
+        for (int i = 0; i < moves.size(); i++) {
+            arrayOfMoves[i] = new Move(moves.get(i));
+        }
+        return arrayOfMoves;
     }
 
     public FakeIO() {}
+
+    public FakeIO(Move[] moves) {
+       this.moves = new ArrayList<Move>(asList(moves));
+    }
 
     public List<String> calledMethods() {
         return this.called;
     }
 
     @Override
-    public int getMove() {
+    public Move getMove() {
         return moves.remove(0);
     }
 

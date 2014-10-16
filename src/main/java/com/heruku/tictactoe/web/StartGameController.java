@@ -37,6 +37,7 @@ class StartGameController {
     @RequestMapping(value = "/", method = GET)
     public String showStartForm(ModelMap locals) {
         locals.addAttribute("gameTypes", GameType.values());
+
         return paths.play();
     }
 

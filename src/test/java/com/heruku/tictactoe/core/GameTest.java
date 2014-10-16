@@ -17,7 +17,6 @@ import static org.junit.Assert.*;
 
 public class GameTest {
 
-    public static final int MOVE = 0;
     private Game emptyGame;
     private FakeIO io;
 
@@ -27,7 +26,7 @@ public class GameTest {
         emptyGame = new GameFactory(io).build(THREE_BY_THREE, HUMAN_VS_HUMAN);
     }
 
-    public Game setupGameWithMoves(List<Integer> moves) {
+    private Game setupGameWithMoves(List<Integer> moves) {
         io = new FakeIO(moves);
         return new GameFactory(io).build(THREE_BY_THREE, HUMAN_VS_HUMAN);
     }
@@ -37,7 +36,7 @@ public class GameTest {
         return new GameFactory(io).build(THREE_BY_THREE, HUMAN_VS_HUMAN);
     }
 
-    public Game setupGameWithBoard(String boardString) {
+    private Game setupGameWithBoard(String boardString) {
         io = new FakeIO();
         List<Player> players = Arrays.<Player>asList(new HumanPlayer(X, io), new HumanPlayer(O, io));
         Board board = new ThreeByThreeBoard(boardString);

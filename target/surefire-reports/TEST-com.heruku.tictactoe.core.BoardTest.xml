@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="20" failures="0" name="com.heruku.tictactoe.core.BoardTest" time="0.004" errors="0" skipped="0">
+<testsuite tests="20" failures="0" name="com.heruku.tictactoe.core.BoardTest" time="0.005" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib"/>
@@ -64,8 +64,8 @@
   </properties>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="negativeMoveIsInvalid" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinner" time="0"/>
-  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinnerOnFourByFour" time="0.001"/>
-  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isFull" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="horizontalWinnerOnFourByFour" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isFull" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValid" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="markSquareWithMove" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="tooLargeMoveIndexIsInvalid" time="0"/>
@@ -73,13 +73,13 @@
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isEmptySquare" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="validMoveIsValid" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="allMovesValidOnFourByFour" time="0"/>
-  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinnerOnFourByFour" time="0.001"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="verticalWinnerOnFourByFour" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="noMovesValid" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="someMovesValid" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="playedSquareIsInvalid" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="diagonalWinnerOnFourByFour" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isNotEmptySquare" time="0"/>
-  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isNotFull" time="0"/>
-  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="validMoveOnFourByFour" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isNotFull" time="0.001"/>
+  <testcase classname="com.heruku.tictactoe.core.BoardTest" name="validMoveOnFourByFour" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.BoardTest" name="isDiagonalWinner" time="0"/>
 </testsuite>

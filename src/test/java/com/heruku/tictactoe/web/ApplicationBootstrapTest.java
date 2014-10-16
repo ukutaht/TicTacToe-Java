@@ -15,5 +15,6 @@ public class ApplicationBootstrapTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testLoad() {
         assertNotNull(applicationContext.getBeanDefinitionNames());
+
     }
 }

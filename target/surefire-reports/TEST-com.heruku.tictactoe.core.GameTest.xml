@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="com.heruku.tictactoe.core.GameTest" time="0.002" errors="0" skipped="0">
+<testsuite tests="17" failures="0" name="com.heruku.tictactoe.core.GameTest" time="0.005" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/jre/lib"/>
@@ -62,21 +62,21 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.heruku.tictactoe.core.GameTest" name="playMoveDoesNotMarkSquareIfInvalid" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.GameTest" name="playMoveDoesNotMarkSquareIfInvalid" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOThatGameHasWinner" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="showsBoardWhenPlayingMove" time="0"/>
-  <testcase classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOThatGameHasdraw" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOThatGameHasdraw" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="isOverVerticalWin" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="isOverHorizontalWin" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="emptyGameIsNotOver" time="0"/>
-  <testcase classname="com.heruku.tictactoe.core.GameTest" name="isOverDraw" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.GameTest" name="isOverDraw" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="initShowsBoardAndTellsTurn" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="notifiesIOofTheTurnWhenNoWinnerOrDraw" time="0"/>
-  <testcase classname="com.heruku.tictactoe.core.GameTest" name="playMoveMarksSquare" time="0"/>
+  <testcase classname="com.heruku.tictactoe.core.GameTest" name="playMoveMarksSquare" time="0.001"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="isOverDiagonalWin" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="playMoveDoesNotMarkSquareIfMoveIsIllegal" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="winnerO" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="winnerX" time="0"/>
   <testcase classname="com.heruku.tictactoe.core.GameTest" name="playMoveAdvancesTurn" time="0.001"/>
-  <testcase classname="com.heruku.tictactoe.core.GameTest" name="halfWayPlayedIsNotOver" time="0.001"/>
+  <testcase classname="com.heruku.tictactoe.core.GameTest" name="halfWayPlayedIsNotOver" time="0"/>
 </testsuite>
